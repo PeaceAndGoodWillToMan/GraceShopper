@@ -1,6 +1,7 @@
 # Authors
 
 Rob Schnek 😎
+Dominic Sciara
 
 # Boilermaker
 
