@@ -3,11 +3,9 @@
 Rob Schnek 😎
 Dominic Sciara
 Sholto Fox
+Fergal Cluskey-Gallagher
 
 # Boilermaker
-
-# Made By: 
-## Fergal Cluskey-Gallagher
 
 _Good things come in pairs_
 
