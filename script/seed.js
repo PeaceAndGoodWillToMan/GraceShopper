@@ -9,8 +9,20 @@ async function seed() {
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({
+      firstName: 'dave',
+      lastName: 'poop',
+      email: 'cody@email.com',
+      password: '123',
+      address: '84 lexington ave'
+    }),
+    User.create({
+      firstName: 'chazz',
+      lastName: 'micheal',
+      email: 'murphy@email.com',
+      password: '123',
+      address: '1234 dunkin ave'
+    })
   ])
 
   // remember to add $ when rendering price
@@ -58,7 +70,7 @@ async function seed() {
     })
   ])
 
-  console.log(`seeded ${boards.length} users`)
+  console.log(`seeded ${boards.length} boards`)
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }
