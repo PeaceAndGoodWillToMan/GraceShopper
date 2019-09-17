@@ -15,6 +15,5 @@ const Board = require('./board')
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User,
-  Board
+  User, Order, Board
 }
