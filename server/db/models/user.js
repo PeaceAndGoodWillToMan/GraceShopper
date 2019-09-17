@@ -37,11 +37,6 @@ const User = db.define('user', {
       notEmpty: true
     }
   },
-  cart: {
-    type: Sequelize.ARRAY(Sequelize.JSON),
-    allowNull: false,
-    defaultValue: []
-  },
   salt: {
     type: Sequelize.STRING,
     // Making `.salt` act like a function hides it when serializing to JSON.
