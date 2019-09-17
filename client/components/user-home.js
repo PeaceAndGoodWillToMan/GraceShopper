@@ -5,8 +5,8 @@ import {connect} from 'react-redux'
 /**
  * COMPONENT
  */
-export const UserHome = (props, {isLoggedIn}) => {
-  const {email} = props
+const UserHome = props => {
+  const {email, isLoggedIn} = props
 
   return isLoggedIn ? (
     <div>
