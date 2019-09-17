@@ -1,13 +1,11 @@
 const router = require('express').Router()
-const { User } = require('../db/models')
+const { Order } = require('../db/models')
 
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await User.findAll({
-      attributes: ['id', 'email']
-    });
-    res.json(users);
+    const orders = await Order.findAll();
+    res.json(orders);
   } catch (err) {
     next(err);
   }
@@ -15,8 +13,8 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const users = await User.findById(req.params.id);
-    res.json(users);
+    const orders = await Order.findById(req.params.id);
+    res.json(orders);
   } catch (err) {
     next(err);
   }
