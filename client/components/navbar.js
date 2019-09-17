@@ -1,11 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link, Switch, Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import {Login, Signup} from './auth-form'
-import UserHome from './user-home'
-import BoardList from './board-all'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
@@ -32,10 +29,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       )}
     </nav>
     <hr />
-    <Route exact path="/home" component={UserHome} />
-    <Route exact path="/boards" component={BoardList} />
-    <Route exact path="/login" component={Login} />
-    <Route exact path="/signup" component={Signup} />
   </div>
 )
 
