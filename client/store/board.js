@@ -7,14 +7,6 @@ const GOT_ALL_BOARDS = 'GOT_ALL_BOARDS'
 const GOT_SINGLE_BOARD = 'GOT_SINGLE_BOARD'
 
 /**
- * INITIAL STATE
- */
-const initialState = {
-  all: [],
-  selected: {}
-}
-
-/**
  * ACTION CREATORS
  */
 const gotAllBoards = boards => ({type: GOT_ALL_BOARDS, boards})
@@ -47,6 +39,15 @@ export const getSingleBoard = id => {
     }
   }
 }
+
+/**
+ * INITIAL STATE
+ */
+const initialState = {
+  all: [],
+  selected: {}
+}
+
 /**
  * REDUCER
  */
