@@ -4,18 +4,24 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const GOT_ALL_BOARDS = 'GOT_ALL_BOARDS'
+const GOT_SINGLE_BOARD = 'GOT_SINGLE_BOARD'
 
 /**
  * INITIAL STATE
  */
 const initialState = {
-  all: []
+  all: [],
+  selected: {}
 }
 
 /**
  * ACTION CREATORS
  */
 const gotAllBoards = boards => ({type: GOT_ALL_BOARDS, boards})
+const gotSingleBoard = board => ({
+  type: GOT_SINGLE_BOARD,
+  board
+})
 
 /**
  * THUNK CREATORS
@@ -30,6 +36,17 @@ export const getAllBoards = () => {
     }
   }
 }
+
+export const getSingleBoard = id => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/boards/${id}`)
+      dispatch(gotSingleBoard(data))
+    } catch (err) {
+      console.log('Something went wrong!')
+    }
+  }
+}
 /**
  * REDUCER
  */
@@ -37,6 +54,8 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case GOT_ALL_BOARDS:
       return {...state, all: action.boards}
+    case GOT_SINGLE_BOARD:
+      return {...state, selected: action.board}
     default:
       return state
   }
