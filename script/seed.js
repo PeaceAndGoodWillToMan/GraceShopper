@@ -68,13 +68,14 @@ async function seed() {
     })
   ])
 
-  const someOrder = await Order.create({userId: 1})
-  const someBoardOrder = await BoardOrder.create({
-    boardId: 3,
-    orderId: 1,
-    price: 250,
-    quantity: 3
-  })
+  const order1 = await Order.create({userId: 1})
+  const bo = {
+    orderId: order1.id,
+    boardId: boards[3].id,
+    quantity: 3,
+    price: 300
+  }
+  const boardOrder1 = await BoardOrder.create(bo)
 
   console.log(`seeded ${boards.length} boards`)
   console.log(`seeded ${users.length} users`)
@@ -88,6 +89,24 @@ async function runSeed() {
   console.log('seeding...')
   try {
     await seed()
+    const printOrder = await Order.findAll({
+      include: [
+        {
+          model: Board,
+          as: 'boards',
+          required: false,
+          attributes: ['id', 'name'],
+          through: {
+            model: BoardOrder,
+            as: 'boardOrders',
+            attributes: ['quantity']
+          }
+        }
+      ]
+    })
+    const printBoardOrder = await BoardOrder.findAll()
+    console.log(printOrder[0].dataValues)
+    console.log(printBoardOrder[0].dataValues)
   } catch (err) {
     console.error(err)
     process.exitCode = 1
