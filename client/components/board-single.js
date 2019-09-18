@@ -29,17 +29,18 @@ class Single extends Component {
   }
 
   handleClick() {
-    console.log(this.props.selected.id)
+    console.log(this.props.selected.id.toString())
     event.preventDefault()
-    if (!window.localStorage.length) {
-      window.localStorage.setItem(`${this.props.selected.id}`, '1')
-    } else if (window.localStorage.getItem(`${this.props.selected.id}`)) {
-      window.localStorage.setItem(
-        `${this.props.selected.id}`,
-        `${window.localStorage.getItem(String(this.props.selected.id))}`
-      )
+    if (window.localStorage.length === 0) {
+      window.localStorage.setItem(String(this.props.selected.id), '1')
+    } else if (
+      window.localStorage.getItem(String(this.props.selected.id)) !== null
+    ) {
+      let quant = window.localStorage.getItem(String(this.props.selected.id))
+      quant++
+      window.localStorage.setItem(String(this.props.selected.id), String(quant))
     } else {
-      window.localStorage.setItem(`${this.props.selected.id}`, '1')
+      window.localStorage.setItem(String(this.props.selected.id), '1')
     }
   }
 }
