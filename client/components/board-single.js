@@ -3,6 +3,10 @@ import {getSingleBoard} from '../store/board'
 import {connect} from 'react-redux'
 
 class Single extends Component {
+  constructor(props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+  }
   componentDidMount() {
     const id = this.props.match.params.id
     this.props.getBoard(id)
@@ -17,22 +21,27 @@ class Single extends Component {
           <p>Price: {price}</p>
           <p>Stock: {stock}</p>
         </div>
+        <button type="button" onClick={this.handleClick}>
+          Add to Cart
+        </button>
       </div>
     )
   }
 
-  handleClick() {}
-}
-
-if (!window.localStorage) {
-  window.localStorage.setItem(`${this.props.selected.id}`, '1')
-} else if (window.localStorage.getItem(`${this.props.selected.id}`)) {
-  window.localStorage.setItem(
-    `${this.props.selected.id}`,
-    `${window.localStorage.getItem(String(this.props.selected.id++))}`
-  )
-} else {
-  window.localStorage.setItem(`${this.props.selected.id}`, '1')
+  handleClick() {
+    console.log(this.props.selected.id)
+    event.preventDefault()
+    if (!window.localStorage.length) {
+      window.localStorage.setItem(`${this.props.selected.id}`, '1')
+    } else if (window.localStorage.getItem(`${this.props.selected.id}`)) {
+      window.localStorage.setItem(
+        `${this.props.selected.id}`,
+        `${window.localStorage.getItem(String(this.props.selected.id))}`
+      )
+    } else {
+      window.localStorage.setItem(`${this.props.selected.id}`, '1')
+    }
+  }
 }
 
 const mapDispatchToProps = dispatch => ({
