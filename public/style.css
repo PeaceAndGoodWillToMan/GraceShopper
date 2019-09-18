@@ -59,7 +59,24 @@ html {
   height: 100%;
 }
 
-.boardlist {
+ul {
+  list-style-type: none;
+}
+
+.wrappity {
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#item {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 40px;
+  background: rgba(146, 146, 146, 0.199);
+  padding: 25px;
+  height: 200%;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
 }
