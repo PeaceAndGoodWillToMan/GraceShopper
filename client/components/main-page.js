@@ -6,17 +6,7 @@ import BoardList from './board-list'
 import BoardSingle from './board-single'
 
 const MainPage = () => {
-  return (
-    <div>
-      <Switch>
-        <Route exact path="/home" component={UserHome} />
-        <Route exact path="/boards" component={BoardList} />
-        <Route exact path="/boards/:id" component={BoardSingle} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-      </Switch>
-    </div>
-  )
+  return <div />
 }
 
 export default MainPage
