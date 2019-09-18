@@ -11,13 +11,28 @@ class Single extends Component {
     const {name, price, imageUrl, stock} = this.props.selected
     return (
       <div>
-        <img src={imageUrl} height="200" width="200" />
-        <h1>{name}</h1>
-        <p>Price: {price}</p>
-        <p>Stock: {stock}</p>
+        <div>
+          <img src={imageUrl} height="200" width="200" />
+          <h1>{name}</h1>
+          <p>Price: {price}</p>
+          <p>Stock: {stock}</p>
+        </div>
       </div>
     )
   }
+
+  handleClick() {}
+}
+
+if (!window.localStorage) {
+  window.localStorage.setItem(`${this.props.selected.id}`, '1')
+} else if (window.localStorage.getItem(`${this.props.selected.id}`)) {
+  window.localStorage.setItem(
+    `${this.props.selected.id}`,
+    `${window.localStorage.getItem(String(this.props.selected.id++))}`
+  )
+} else {
+  window.localStorage.setItem(`${this.props.selected.id}`, '1')
 }
 
 const mapDispatchToProps = dispatch => ({
