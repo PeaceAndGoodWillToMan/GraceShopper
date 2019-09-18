@@ -13,7 +13,7 @@ class Single extends Component {
       <div>
         <img src={imageUrl} height="200" width="200" />
         <h1>{name}</h1>
-        <p>Price: {price}</p>
+        <p>Price: ${price}</p>
         <p>Stock: {stock}</p>
       </div>
     )

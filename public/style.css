@@ -19,3 +19,47 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+#navtitle {
+  background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/folk-pattern.png');
+}
+
+.navus {
+  align-items: center;
+  color: #831d1db4;
+  display: flex;
+  justify-content: space-between;
+}
+
+#skatetitle {
+  display: flex;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 10px;
+  width: 20%;
+}
+
+.links {
+  display: flex;
+  justify-content: end;
+  width: 80%;
+  margin-left: 24%;
+}
+
+.logout {
+  width: 20%;
+}
+.link-list {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+}
+
+html {
+  background: url('https://www.toptal.com/designers/subtlepatterns/patterns/folk-pattern.png');
+  height: 100%;
+}
+
+.boardlist {
+  display: flex;
+  flex-flow: row wrap;
+}

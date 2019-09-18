@@ -12,12 +12,13 @@ class List extends Component {
 
   render() {
     return (
-      <div>
+      <div className="boardlist">
         <ul>
           {this.props.boards.map(board => (
             <div key={board.id} id="item">
               <Link key={board.id} to={`boards/${board.id}`}>
                 <ListItem key={board.id} board={board} />
+                <img src={board.imageUrl} height="200" width="200" />
               </Link>
             </div>
           ))}
