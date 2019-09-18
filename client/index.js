@@ -5,6 +5,7 @@ import {Router} from 'react-router-dom'
 import history from './history'
 import store from './store'
 import App from './app'
+import Routes from './routes'
 
 // establishes socket connection
 import './socket'
@@ -13,6 +14,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <App />
+      <Routes />
     </Router>
   </Provider>,
   document.getElementById('app')
