@@ -8,7 +8,12 @@ import axios from 'axios'
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div id="navtitle">
     <nav className="navus">
-      <h1 id="skatetitle">SkateWithUs</h1>
+      <h1 id="skatetitle">
+        <img
+          src="http://r52.cooltext.com/rendered/cooltext336127181737232.png"
+          id="skatebar"
+        />
+      </h1>
       {isLoggedIn ? (
         <div className="links">
           <div className="link-list">
