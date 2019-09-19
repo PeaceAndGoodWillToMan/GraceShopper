@@ -24,6 +24,7 @@ class Single extends Component {
         <button type="button" onClick={this.handleClick}>
           Add to Cart
         </button>
+        <div id="add-toast">Item added to cart!</div>
       </div>
     )
   }
@@ -34,8 +35,11 @@ class Single extends Component {
       id: this.props.selected.id
     }
     const itemData = {
+      name: this.props.selected.name,
+      imageUrl: this.props.selected.imageUrl,
       quantity: 1,
-      price: this.props.selected.price
+      price: this.props.selected.price,
+      stock: this.props.selected.stock
     }
     if (
       window.localStorage.length === 0 ||
@@ -51,6 +55,11 @@ class Single extends Component {
       data.price += itemData.price
       window.localStorage.setItem(JSON.stringify(item), JSON.stringify(data))
     }
+    let toast = document.getElementById('add-toast')
+    toast.className = 'show'
+    setTimeout(function() {
+      toast.className = toast.className.replace('show', '')
+    }, 3000)
   }
 }
 

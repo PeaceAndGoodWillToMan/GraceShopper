@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import axios from 'axios'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({logoutHandleClick, isLoggedIn}) => (
   <div id="navtitle">
     <nav className="navus">
       <h1 id="skatetitle">
@@ -23,8 +23,12 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             <Link to="/orders">Order History</Link>
           </div>
           <div className="logout">
-            <Link to="/cart">Cart</Link>
-            <a href="#" onClick={handleClick}>
+            {window.localStorage.length ? (
+              <Link to="/cart">Cart&#40;{window.localStorage.length}&#41;</Link>
+            ) : (
+              <Link to="/cart">Cart</Link>
+            )}
+            <a href="#" onClick={logoutHandleClick}>
               Logout
             </a>
           </div>
@@ -59,7 +63,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    async handleClick() {
+    async logoutHandleClick() {
       let payload = {}
       for (let key in window.localStorage) {
         if (key[0] === '{') {
@@ -88,6 +92,6 @@ export default connect(mapState, mapDispatch)(Navbar)
  * PROP TYPES
  */
 Navbar.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  logoutHandleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
