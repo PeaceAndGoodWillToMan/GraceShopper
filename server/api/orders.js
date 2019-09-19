@@ -109,7 +109,7 @@ router.get('/login', async (req, res, next) => {
         }
       ]
     })
-    if (order) {
+    if (order.length > 0) {
       const boardOrder = await BoardOrder.findAll({
         where: {
           orderId: order[0].id
