@@ -36,7 +36,6 @@ export const gotContents = () => {
       }
       // const {data: allBoards} = await axios.get('/api/boards')
       // dispatch(gotCart(data))
-      console.log(arr)
       dispatch(gotCart(arr))
     } catch (err) {
       console.log('Something went wrong!')

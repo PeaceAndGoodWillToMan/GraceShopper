@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {gotContents} from '../store/cart'
 import {getAllBoards} from '../store'
+import ListItem from './board-list-item'
 import {Link} from 'react-router-dom'
 
 class Cart extends Component {
@@ -27,25 +28,35 @@ class Cart extends Component {
   render() {
     const boards = this.props.boards
     const contents = this.props.contents
+    let contentIds = []
+    for (let i = 0; i < contents.length; i++) {
+      contentIds.push(contents[i].id)
+    }
+    const filteredContents = boards.filter(board => board.id in contentIds)
     return (
       <div className="cartlist">
         <ul>
-          {/* {boards.filter(board => (board.id in contents
-            <div key={content.id} id="item">
-              <Link key={content.id} to={`boards/${content.id}`}>
-                <img ></img>
+          {filteredContents.map(board => (
+            <div key={board.id} id="item">
+              <Link key={board.id} to={`boards/${board.id}`}>
+                <img src={board.imageUrl} height="100" width="100" />
+                <ListItem key={board.id} board={board} />
               </Link>
+              <input
+                type="number"
+                min="1"
+                name="qty"
+                value={this.props.quantity}
+              />
+              <button
+                type="button"
+                onClick={this.handleDeleteClick}
+                value="Need to put in the variable"
+              >
+                Remove from Cart
+              </button>
             </div>
-
-          ))} */}
-          <input type="number" min="1" name="qty" value={this.props.quantity} />
-          <button
-            type="button"
-            onClick={this.handleDeleteClick}
-            value="Need to put in the variable"
-          >
-            Remove from Cart
-          </button>
+          ))}
         </ul>
         <div>
           <button
@@ -71,7 +82,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  boards: state.board.all
+  boards: state.board.all,
+  contents: state.cart.cart
 })
 
 const CartContents = connect(mapStateToProps, mapDispatchToProps)(Cart)
