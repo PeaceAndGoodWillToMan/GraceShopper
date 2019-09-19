@@ -29,18 +29,32 @@ class Single extends Component {
   }
 
   handleClick() {
-    console.log(this.props.selected.id.toString())
     event.preventDefault()
+    const item = {
+      id: this.props.selected.id
+    }
+    const itemData = {
+      quantity: 1,
+      price: this.props.selected.price
+    }
     if (window.localStorage.length === 0) {
-      window.localStorage.setItem(String(this.props.selected.id), '1')
-    } else if (
-      window.localStorage.getItem(String(this.props.selected.id)) !== null
-    ) {
-      let quant = window.localStorage.getItem(String(this.props.selected.id))
-      quant++
-      window.localStorage.setItem(String(this.props.selected.id), String(quant))
+      console.log('if')
+      window.localStorage.setItem(
+        JSON.stringify(item),
+        JSON.stringify(itemData)
+      )
+    } else if (window.localStorage.getItem(JSON.stringify(item)) !== null) {
+      console.log('else if')
+      let data = JSON.parse(window.localStorage.getItem(JSON.stringify(item)))
+      data.quantity++
+      data.price += itemData.price
+      window.localStorage.setItem(JSON.stringify(item), JSON.stringify(data))
     } else {
-      window.localStorage.setItem(String(this.props.selected.id), '1')
+      console.log('else')
+      window.localStorage.setItem(
+        JSON.stringify(item),
+        JSON.stringify(itemData)
+      )
     }
   }
 }
