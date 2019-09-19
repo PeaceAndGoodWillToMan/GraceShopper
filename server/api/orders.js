@@ -17,25 +17,28 @@ router.post('/logout', async (req, res, next) => {
   try {
     const userId = req.session.passport.user
     const order = await Order.create({userId})
-    const bo = {
-      orderId: order.id,
-      boardId: req.body.localStorage.id,
-      quantity: req.body.localStorage.quantity,
-      price: req.body.localStorage.price
-    }
-    const boardOrder = await BoardOrder.create(bo)
-    res.sendStatus(201).json(boardOrder)
+    const keys = Object.keys(req.body)
+    keys.forEach(async k => {
+      let boardId = Number(k)
+      let quantity = req.body[k].quantity
+      let price = req.body[k].price
+      const bo = {
+        orderId: order.id,
+        boardId,
+        quantity,
+        price
+      }
+      await BoardOrder.create(bo)
+    })
+    res.sendStatus(201)
   } catch (err) {
     next(err)
   }
 })
 
 // router.put('/logout', async (req, res, next) => {
-//   try {
-
-//   } catch(err) {
-//     next(err)
-//   }
+//   console.log('butter')
+//   res.send('woooo');
 // })
 
 // when client clicks checkout, this route creates a boardOrder for the client
