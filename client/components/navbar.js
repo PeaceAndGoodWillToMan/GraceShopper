@@ -53,7 +53,21 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     async handleClick() {
-      const data = await axios.post('/api/orders/logout')
+      let payload = {}
+      for (let key in window.localStorage) {
+        if (key[0] === '{') {
+          let valParse = JSON.parse(window.localStorage.getItem(key))
+          let idKey = JSON.parse(key).id
+          let temp = {[idKey]: valParse}
+          payload = {...payload, ...temp}
+        }
+      }
+      try {
+        const data = await axios.post('/api/orders/logout', payload)
+        console.log(data)
+      } catch (err) {
+        console.log('Error with axios.post /api/orders/logout')
+      }
       dispatch(logout())
     }
   }
