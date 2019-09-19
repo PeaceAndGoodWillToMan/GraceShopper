@@ -16,10 +16,10 @@ class Single extends Component {
     return (
       <div>
         <div>
-          <img src={imageUrl} height="200" width="200" />
+          <img src={imageUrl} height="200" width="200" className="imgrounder" />
           <h1>{name}</h1>
-          <p>Price: {price}</p>
-          <p>Stock: {stock}</p>
+          <p>Price: ${price}</p>
+          {stock < 10 ? <p>Stock: {stock} </p> : ' '}
         </div>
         <button type="button" onClick={this.handleClick}>
           Add to Cart
