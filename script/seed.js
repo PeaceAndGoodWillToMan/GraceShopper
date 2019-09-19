@@ -28,8 +28,7 @@ async function seed() {
     Board.create({
       name: 'Braille Pennyboard',
       price: 50,
-      imageUrl:
-        'https://images-na.ssl-images-amazon.com/images/I/81cgazbE51L._SY741_.jpg',
+      imageUrl: 'https://pbs.twimg.com/media/Doq9hLmW4AA1fp-.jpg',
       stock: 50
     }),
     Board.create({
@@ -43,13 +42,14 @@ async function seed() {
       name: 'Braille Longboard',
       price: 90,
       imageUrl:
-        'https://scene7.zumiez.com/is/image/zumiez/pdp_hero/San-Clemente-Peony-39%22-Double-Drop-Longboard-Complete-_313465-front-US.jpg',
+        'https://www.theskateboarder.net/wp-content/uploads/2017/08/longboards-for-sale-craiglist.jpg',
       stock: 50
     }),
     Board.create({
       name: 'Walmart Pennyboard',
       price: 30,
-      imageUrl: 'https://i.ebayimg.com/images/g/nOgAAOSw4Y1cIIZq/s-l300.jpg',
+      imageUrl:
+        'https://www.thrillappeal.com/wp-content/uploads/2018/06/best-penny-boards-1200x800.jpg',
       stock: 50
     }),
     Board.create({
@@ -63,7 +63,7 @@ async function seed() {
       name: 'Walmart Longboard',
       price: 70,
       imageUrl:
-        'https://s7d9.scene7.com/is/image/zumiez/cat_max/Landyachtz-Drop-Cat-Illuminacion-38%22-Drop-Through-Longboard-Complete-_312465.jpg',
+        'https://scontent.cdninstagram.com/vp/157ad96f45ed10a1f8f784b99e8573b1/5D9DB78A/t51.2885-15/sh0.08/e35/p640x640/61405759_2300564359981913_4221066640413054526_n.jpg?_nc_ht=scontent.cdninstagram.com',
       stock: 50
     })
   ])
