@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getAllOrders} from '../store/board'
-import ListItem from './board-list-item'
-import {Link} from 'react-router-dom'
+import {gotContents} from '../store/cart'
+import {getAllBoards} from '../store'
 
 class Cart extends Component {
   constructor(props) {
@@ -10,7 +9,8 @@ class Cart extends Component {
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
   }
   componentDidMount() {
-    this.props.getData()
+    this.props.getCart()
+    this.props.getAllBoards()
   }
 
   handleDeleteClick(event) {
@@ -27,6 +27,7 @@ class Cart extends Component {
     return (
       <div className="cartlist">
         <ul>
+          {}
           <input type="number" min="1" name="qty" value={this.props.quantity} />
           <button
             type="button"
@@ -40,7 +41,7 @@ class Cart extends Component {
           <button
             type="submit"
             onSubmit={this.handleSubmit}
-            value="Need to put in the variable"
+            value={window.localStorage}
           >
             Checkout
           </button>
@@ -51,8 +52,11 @@ class Cart extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  getData: () => {
+  getCart: () => {
     dispatch(gotContents())
+  },
+  getData: () => {
+    dispatch(getAllBoards())
   }
 })
 
@@ -60,4 +64,5 @@ const mapStateToProps = state => ({
   orders: state.order.all
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+const CartContents = connect(mapStateToProps, mapDispatchToProps)(Cart)
+export default CartContents
