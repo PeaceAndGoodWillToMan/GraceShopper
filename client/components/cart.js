@@ -39,9 +39,14 @@ class Cart extends Component {
       <div className="cartlist">
         <ul>
           {filteredContents.map(board => (
-            <div key={board.id} id="item">
+            <div key={board.id} id="cartItems">
               <Link key={board.id} to={`boards/${board.id}`}>
-                <img src={board.imageUrl} height="100" width="100" />
+                <img
+                  src={board.imageUrl}
+                  height="100"
+                  width="100"
+                  id="cartImg"
+                />
                 {board.name}
               </Link>
               <input

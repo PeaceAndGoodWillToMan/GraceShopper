@@ -49,6 +49,12 @@ nav a:hover {
   width: 30%;
 }
 
+#imp {
+  display: flex;
+  justify-content: center;
+  justify-items: flex-end;
+}
+
 form div {
   margin: 1em;
   display: inline-block;
@@ -132,6 +138,7 @@ li:hover {
 #item {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   border-radius: 40px;
   background: rgba(71, 71, 71, 0.199);
   padding: 25px;
@@ -140,6 +147,22 @@ li:hover {
   margin-bottom: 2.5%;
 }
 
+#cartImg {
+  border-radius: 30px;
+}
+
+#cartItems {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-radius: 40px;
+  background: rgba(71, 71, 71, 0.199);
+  padding: 25px;
+  height: 200%;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+  margin-right: 2.5%;
+}
 .imgrounder {
   border-radius: 40px;
 }
