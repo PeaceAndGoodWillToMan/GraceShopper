@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import axios from 'axios'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div id="navtitle">
@@ -51,7 +52,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    handleClick() {
+    async handleClick() {
+      const data = await axios.post('/api/orders/logout')
       dispatch(logout())
     }
   }
