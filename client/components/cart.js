@@ -35,6 +35,9 @@ class Cart extends Component {
       contentIds.includes(board.id)
     )
 
+    // const combined = [...contents, ...boards];
+    // console.log(combined)
+
     return (
       <div className="cartlist">
         <ul>
