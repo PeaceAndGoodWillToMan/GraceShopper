@@ -12,7 +12,6 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    console.log(req.params)
     const boards = await Board.findByPk(req.params.id)
     res.json(boards)
   } catch (err) {

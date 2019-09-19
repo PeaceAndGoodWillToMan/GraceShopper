@@ -90,6 +90,10 @@ async function runSeed() {
   try {
     await seed()
     const printOrder = await Order.findAll({
+      where: {
+        userId: 1,
+        fulfilled: false
+      },
       include: [
         {
           model: Board,
@@ -104,7 +108,11 @@ async function runSeed() {
         }
       ]
     })
-    const printBoardOrder = await BoardOrder.findAll()
+    const printBoardOrder = await BoardOrder.findAll({
+      where: {
+        orderId: 1
+      }
+    })
     console.log(printOrder[0].dataValues)
     console.log(printBoardOrder[0].dataValues)
   } catch (err) {
