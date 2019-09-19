@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {gotContents} from '../store/cart'
 import {getAllBoards} from '../store'
+import {Link} from 'react-router-dom'
 
 class Cart extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class Cart extends Component {
   }
   componentDidMount() {
     this.props.getCart()
-    this.props.getAllBoards()
+    this.props.getData()
   }
 
   handleDeleteClick(event) {
@@ -24,10 +25,19 @@ class Cart extends Component {
   }
 
   render() {
+    const boards = this.props.boards
+    const contents = this.props.contents
     return (
       <div className="cartlist">
         <ul>
-          {}
+          {/* {boards.filter(board => (board.id in contents
+            <div key={content.id} id="item">
+              <Link key={content.id} to={`boards/${content.id}`}>
+                <img ></img>
+              </Link>
+            </div>
+
+          ))} */}
           <input type="number" min="1" name="qty" value={this.props.quantity} />
           <button
             type="button"
@@ -61,7 +71,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  orders: state.order.all
+  boards: state.board.all
 })
 
 const CartContents = connect(mapStateToProps, mapDispatchToProps)(Cart)

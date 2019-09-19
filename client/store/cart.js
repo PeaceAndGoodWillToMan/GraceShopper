@@ -27,11 +27,16 @@ export const gotContents = () => {
       let arr = []
       for (const key in myStorage) {
         if (myStorage.hasOwnProperty(key)) {
-          arr.push({[key]: myStorage[key]})
+          arr.push({
+            id: JSON.parse(key).id,
+            quantity: JSON.parse(myStorage[key]).quantity,
+            price: JSON.parse(myStorage[key]).price
+          })
         }
       }
       // const {data: allBoards} = await axios.get('/api/boards')
       // dispatch(gotCart(data))
+      console.log(arr)
       dispatch(gotCart(arr))
     } catch (err) {
       console.log('Something went wrong!')
