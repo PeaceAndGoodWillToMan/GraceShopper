@@ -10,7 +10,7 @@ const myStorage = window.localStorage
  * INITIAL STATE
  */
 const initialState = {
-  cart: []
+  contents: []
 }
 
 /**
@@ -48,7 +48,7 @@ export const gotContents = () => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GOT_CART:
-      return {...state, cart: action.contents}
+      return {...state, contents: action.contents}
     default:
       return state
   }

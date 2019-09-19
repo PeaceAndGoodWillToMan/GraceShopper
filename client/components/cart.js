@@ -4,6 +4,7 @@ import {gotContents} from '../store/cart'
 import {getAllBoards} from '../store'
 import ListItem from './board-list-item'
 import {Link} from 'react-router-dom'
+import {compose} from '../../../../../../Library/Caches/typescript/3.5/node_modules/redux'
 
 class Cart extends Component {
   constructor(props) {
@@ -32,7 +33,12 @@ class Cart extends Component {
     for (let i = 0; i < contents.length; i++) {
       contentIds.push(contents[i].id)
     }
-    const filteredContents = boards.filter(board => board.id in contentIds)
+    console.log('CONTENTIDS:', contentIds)
+    const filteredContents = boards.filter(board =>
+      contentIds.includes(board.id)
+    )
+    console.log('FILTERED CONTENTS:', filteredContents)
+
     return (
       <div className="cartlist">
         <ul>
@@ -40,7 +46,7 @@ class Cart extends Component {
             <div key={board.id} id="item">
               <Link key={board.id} to={`boards/${board.id}`}>
                 <img src={board.imageUrl} height="100" width="100" />
-                <ListItem key={board.id} board={board} />
+                {board.name}
               </Link>
               <input
                 type="number"
@@ -83,7 +89,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   boards: state.board.all,
-  contents: state.cart.cart
+  contents: state.cart.contents
 })
 
 const CartContents = connect(mapStateToProps, mapDispatchToProps)(Cart)
