@@ -2,9 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {gotContents} from '../store/cart'
 import {getAllBoards} from '../store'
-import ListItem from './board-list-item'
 import {Link} from 'react-router-dom'
-import {compose} from '../../../../../../Library/Caches/typescript/3.5/node_modules/redux'
 
 class Cart extends Component {
   constructor(props) {
@@ -33,11 +31,9 @@ class Cart extends Component {
     for (let i = 0; i < contents.length; i++) {
       contentIds.push(contents[i].id)
     }
-    console.log('CONTENTIDS:', contentIds)
     const filteredContents = boards.filter(board =>
       contentIds.includes(board.id)
     )
-    console.log('FILTERED CONTENTS:', filteredContents)
 
     return (
       <div className="cartlist">
