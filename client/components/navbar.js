@@ -65,7 +65,9 @@ const mapDispatch = dispatch => {
         }
       }
       try {
+        console.log(window.localStorage)
         const data = await axios.post('/api/orders/logout', payload)
+        window.localStorage.clear()
         console.log(data)
       } catch (err) {
         console.log('Error with axios.post /api/orders/logout')

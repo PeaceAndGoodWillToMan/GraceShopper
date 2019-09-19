@@ -16,7 +16,26 @@ router.get('/', async (req, res, next) => {
 router.post('/logout', async (req, res, next) => {
   try {
     const userId = req.session.passport.user
-    const order = await Order.create({userId})
+    let order = await Order.findOrCreate({
+      where: {
+        userId,
+        fulfilled: false
+      },
+      defaults: {
+        userId
+      }
+    })
+    order = order[0]
+    const allBoardOrders = await BoardOrder.findAll({
+      where: {
+        orderId: order.id
+      }
+    })
+    if (allBoardOrders.length > 0) {
+      allBoardOrders.forEach(async b => {
+        await b.destroy()
+      })
+    }
     const keys = Object.keys(req.body)
     keys.forEach(async k => {
       let boardId = Number(k)
