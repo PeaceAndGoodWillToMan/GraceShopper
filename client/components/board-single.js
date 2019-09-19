@@ -14,12 +14,12 @@ class Single extends Component {
   render() {
     const {name, price, imageUrl, stock} = this.props.selected
     return (
-      <div>
+      <div id="singleBoard">
         <div>
-          <img src={imageUrl} height="200" width="200" />
+          <img src={imageUrl} height="200" width="200" className="imgrounder" />
           <h1>{name}</h1>
-          <p>Price: {price}</p>
-          <p>Stock: {stock}</p>
+          <p>Price: ${price}</p>
+          {stock < 10 ? <p>Stock: {stock} </p> : ' '}
         </div>
         <button type="button" onClick={this.handleClick}>
           Add to Cart

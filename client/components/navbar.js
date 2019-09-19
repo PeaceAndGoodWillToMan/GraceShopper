@@ -3,11 +3,17 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import axios from 'axios'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div id="navtitle">
     <nav className="navus">
-      <h1 id="skatetitle">SkateWithUs</h1>
+      <h1 id="skatetitle">
+        <img
+          src="http://r52.cooltext.com/rendered/cooltext336127181737232.png"
+          id="skatebar"
+        />
+      </h1>
       {isLoggedIn ? (
         <div className="links">
           <div className="link-list">
@@ -53,7 +59,24 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    handleClick() {
+    async handleClick() {
+      let payload = {}
+      for (let key in window.localStorage) {
+        if (key[0] === '{') {
+          let valParse = JSON.parse(window.localStorage.getItem(key))
+          let idKey = JSON.parse(key).id
+          let temp = {[idKey]: valParse}
+          payload = {...payload, ...temp}
+        }
+      }
+      try {
+        console.log(window.localStorage)
+        const data = await axios.post('/api/orders/logout', payload)
+        window.localStorage.clear()
+        console.log(data)
+      } catch (err) {
+        console.log('Error with axios.post /api/orders/logout')
+      }
       dispatch(logout())
     }
   }

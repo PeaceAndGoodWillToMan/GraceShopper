@@ -17,7 +17,12 @@ class List extends Component {
           {this.props.boards.map(board => (
             <div key={board.id} id="item">
               <Link key={board.id} to={`boards/${board.id}`}>
-                <img src={board.imageUrl} height="275" width="275" />
+                <img
+                  src={board.imageUrl}
+                  height="275"
+                  width="275"
+                  className="imgrounder"
+                />
                 <ListItem key={board.id} board={board} />
               </Link>
             </div>
