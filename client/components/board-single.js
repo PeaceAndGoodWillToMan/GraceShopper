@@ -37,24 +37,19 @@ class Single extends Component {
       quantity: 1,
       price: this.props.selected.price
     }
-    if (window.localStorage.length === 0) {
-      console.log('if')
+    if (
+      window.localStorage.length === 0 ||
+      window.localStorage.getItem(JSON.stringify(item)) === null
+    ) {
       window.localStorage.setItem(
         JSON.stringify(item),
         JSON.stringify(itemData)
       )
-    } else if (window.localStorage.getItem(JSON.stringify(item)) !== null) {
-      console.log('else if')
+    } else {
       let data = JSON.parse(window.localStorage.getItem(JSON.stringify(item)))
       data.quantity++
       data.price += itemData.price
       window.localStorage.setItem(JSON.stringify(item), JSON.stringify(data))
-    } else {
-      console.log('else')
-      window.localStorage.setItem(
-        JSON.stringify(item),
-        JSON.stringify(itemData)
-      )
     }
   }
 }
