@@ -8,6 +8,19 @@ const BoardOrder = require('./boardOrder')
 User.hasMany(Order)
 Order.belongsTo(User)
 
+Board.belongsToMany(Order, {
+  through: BoardOrder,
+  as: 'orders',
+  foreignKey: 'boardId',
+  otherKey: 'orderId'
+})
+Order.belongsToMany(Board, {
+  through: BoardOrder,
+  as: 'boards',
+  foreignKey: 'orderId',
+  otherKey: 'boardId'
+})
+
 module.exports = {
   db,
   User,

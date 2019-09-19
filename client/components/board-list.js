@@ -12,17 +12,18 @@ class List extends Component {
 
   render() {
     return (
-      <div className="boardlist">
-        <ul>
+      <div>
+        <ul className="wrappity">
           {this.props.boards.map(board => (
             <div key={board.id} id="item">
               <Link key={board.id} to={`boards/${board.id}`}>
+                <img src={board.imageUrl} height="275" width="275" />
                 <ListItem key={board.id} board={board} />
-                <img src={board.imageUrl} height="200" width="200" />
               </Link>
             </div>
           ))}
         </ul>
+        <hr />
       </div>
     )
   }
