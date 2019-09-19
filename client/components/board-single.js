@@ -14,7 +14,7 @@ class Single extends Component {
   render() {
     const {name, price, imageUrl, stock} = this.props.selected
     return (
-      <div>
+      <div id="singleBoard">
         <div>
           <img src={imageUrl} height="200" width="200" className="imgrounder" />
           <h1>{name}</h1>
