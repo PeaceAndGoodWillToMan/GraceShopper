@@ -12,14 +12,16 @@ async function seed() {
       lastName: 'poop',
       email: 'cody@email.com',
       password: '123',
-      address: '84 lexington ave'
+      address: '84 lexington ave',
+      isAdmin: false
     }),
     User.create({
       firstName: 'chazz',
       lastName: 'micheal',
       email: 'murphy@email.com',
       password: '123',
-      address: '1234 dunkin ave'
+      address: '1234 dunkin ave',
+      isAdmin: false
     })
   ])
 
