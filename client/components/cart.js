@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {gotContents} from '../store/cart'
-import {getAllBoards} from '../store'
+import {getAllcontents} from '../store'
 import {Link} from 'react-router-dom'
 
 class Cart extends Component {
@@ -11,12 +11,11 @@ class Cart extends Component {
   }
   componentDidMount() {
     this.props.getCart()
-    this.props.getData()
   }
 
   handleDeleteClick(event) {
     event.preventDefault()
-    this.props.fetchDeletedBoard(event.target.value)
+    this.props.fetchDeletedcontent(event.target.value)
   }
 
   handleSubmit(event) {
@@ -25,31 +24,22 @@ class Cart extends Component {
   }
 
   render() {
-    const boards = this.props.boards
     const contents = this.props.contents
-    let contentIds = []
-    for (let i = 0; i < contents.length; i++) {
-      contentIds.push(contents[i].id)
-    }
-    const filteredContents = boards.filter(board =>
-      contentIds.includes(board.id)
-    )
 
     return (
       <div className="cartlist">
         <ul>
-          {filteredContents.map(board => (
-            <div key={board.id} id="item">
-              <Link key={board.id} to={`boards/${board.id}`}>
-                <img src={board.imageUrl} height="100" width="100" />
-                {board.name}
+          {contents.map(content => (
+            <div key={content.id} id="item">
+              <Link key={content.id} to={`contents/${content.id}`}>
+                <img src={content.imageUrl} height="100" width="100" />
+                {content.name}
               </Link>
-              <input
-                type="number"
-                min="1"
-                name="qty"
-                value={this.props.quantity}
-              />
+              <input type="number" min="1" name="qty" />
+              <div>
+                <p>qty: {content.quantity}</p>
+                <p>price: {content.price}</p>
+              </div>
               <button
                 type="button"
                 onClick={this.handleDeleteClick}
@@ -77,14 +67,10 @@ class Cart extends Component {
 const mapDispatchToProps = dispatch => ({
   getCart: () => {
     dispatch(gotContents())
-  },
-  getData: () => {
-    dispatch(getAllBoards())
   }
 })
 
 const mapStateToProps = state => ({
-  boards: state.board.all,
   contents: state.cart.contents
 })
 
