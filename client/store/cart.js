@@ -1,10 +1,10 @@
-import axios from 'axios'
+const myStorage = window.localStorage
 
 /**
  * ACTION TYPES
  */
 const GOT_CART = 'GOT_CART'
-const myStorage = window.localStorage
+const DELETE_CONTENT = 'DELETE_CONTENT'
 
 /**
  * INITIAL STATE
@@ -17,6 +17,7 @@ const initialState = {
  * ACTION CREATORS
  */
 const gotCart = contents => ({type: GOT_CART, contents})
+const deleteContent = id => ({type: DELETE_CONTENT, id})
 
 /**
  * THUNK CREATORS
@@ -42,6 +43,16 @@ export const gotContents = () => {
     }
   }
 }
+export const fetchDeletedcontent = id => dispatch => {
+  try {
+    myStorage.removeItem(`{"id":${id}}`)
+    dispatch(deleteContent(id))
+    console.log('STORAGE:', myStorage)
+  } catch (error) {
+    console.log('Something went wrong!')
+  }
+}
+
 /**
  * REDUCER
  */
@@ -49,6 +60,13 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case GOT_CART:
       return {...state, contents: action.contents}
+    case DELETE_CONTENT:
+      return {
+        ...state,
+        contents: state.contents.filter(
+          content => `${content.id}` !== action.id
+        )
+      }
     default:
       return state
   }

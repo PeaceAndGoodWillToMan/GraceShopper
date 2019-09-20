@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {gotContents} from '../store/cart'
-import {getAllcontents} from '../store'
+import {gotContents, fetchDeletedcontent} from '../store/cart'
 import {Link} from 'react-router-dom'
 
 class Cart extends Component {
@@ -31,7 +30,7 @@ class Cart extends Component {
         <ul>
           {contents.map(content => (
             <div key={content.id} id="item">
-              <Link key={content.id} to={`contents/${content.id}`}>
+              <Link key={content.id} to={`/boards/${content.id}`}>
                 <img src={content.imageUrl} height="100" width="100" />
                 {content.name}
               </Link>
@@ -43,7 +42,7 @@ class Cart extends Component {
               <button
                 type="button"
                 onClick={this.handleDeleteClick}
-                value="Need to put in the variable"
+                value={content.id}
               >
                 Remove from Cart
               </button>
@@ -67,7 +66,8 @@ class Cart extends Component {
 const mapDispatchToProps = dispatch => ({
   getCart: () => {
     dispatch(gotContents())
-  }
+  },
+  fetchDeletedcontent: id => dispatch(fetchDeletedcontent(id))
 })
 
 const mapStateToProps = state => ({
