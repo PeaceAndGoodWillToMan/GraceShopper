@@ -30,7 +30,7 @@ class Cart extends Component {
         <ul>
           {contents.map(content => (
             <div key={content.id} id="item">
-              <Link key={content.id} to={`contents/${content.id}`}>
+              <Link key={content.id} to={`/boards/${content.id}`}>
                 <img src={content.imageUrl} height="100" width="100" />
                 {content.name}
               </Link>
