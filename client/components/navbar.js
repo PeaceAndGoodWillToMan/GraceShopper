@@ -9,10 +9,7 @@ const Navbar = ({logoutHandleClick, isLoggedIn}) => (
   <div id="navtitle">
     <nav className="navus">
       <h1 id="skatetitle">
-        <img
-          src="http://r52.cooltext.com/rendered/cooltext336127181737232.png"
-          id="skatebar"
-        />
+        <img src="https://images.cooltext.com/5328850.png" id="skatebar" />
       </h1>
       {isLoggedIn ? (
         <div className="links">
