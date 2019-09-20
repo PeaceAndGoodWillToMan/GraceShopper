@@ -5,56 +5,77 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import axios from 'axios'
 
-const Navbar = ({logoutHandleClick, isLoggedIn}) => (
-  <div id="navtitle">
-    <nav className="navus">
-      <h1 id="skatetitle">
-        <img
-          src="http://r52.cooltext.com/rendered/cooltext336127181737232.png"
-          id="skatebar"
-        />
-      </h1>
-      {isLoggedIn ? (
-        <div className="links">
-          <div className="link-list">
-            {/* The navbar will show these links after you log in */}
-            <Link to="/home">Home</Link>
-            <Link to="/boards">Boards</Link>
-            <Link to="/orders">Order History</Link>
-          </div>
-          <div className="logout">
-            {window.localStorage.length ? (
-              <Link to="/cart">Cart&#40;{window.localStorage.length}&#41;</Link>
-            ) : (
-              <Link to="/cart">Cart</Link>
-            )}
-            <a href="#" onClick={logoutHandleClick}>
-              Logout
-            </a>
-          </div>
-        </div>
-      ) : (
-        <div className="links">
-          <div className="link-list">
-            {/* The navbar will show these links before you log in */}
-            <Link to="/home">Home</Link>
-            <Link to="/boards">Boards</Link>
-            <Link to="/signup">Sign Up</Link>
-          </div>
-          <div className="logout">
-            <Link to="/cart">Cart</Link>
-            <Link to="/login">Login</Link>
-          </div>
-        </div>
-      )}
-    </nav>
-    <hr />
-  </div>
-)
+export let stateChange = function() {
+  this.setState({cart: window.localStorage.length})
+}
+
+class Navbar extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {cart: window.localStorage.length}
+    stateChange = stateChange.bind(this)
+  }
+  render() {
+    const {logoutHandleClick, isLoggedIn} = this.props
+    return (
+      <div id="navtitle">
+        <nav className="navus">
+          <h1 id="skatetitle">
+            <img
+              src="http://r52.cooltext.com/rendered/cooltext336127181737232.png"
+              id="skatebar"
+            />
+          </h1>
+          {isLoggedIn ? (
+            <div className="links">
+              <div className="link-list">
+                {/* The navbar will show these links after you log in */}
+                <Link to="/home">Home</Link>
+                <Link to="/boards">Boards</Link>
+                <Link to="/orders">Order History</Link>
+              </div>
+              <div className="logout">
+                {window.localStorage.length ? (
+                  <Link to="/cart">Cart&#40;{this.state.cart}&#41;</Link>
+                ) : (
+                  <Link to="/cart">Cart</Link>
+                )}
+                <a href="#" onClick={logoutHandleClick}>
+                  Logout
+                </a>
+              </div>
+            </div>
+          ) : (
+            <div className="links">
+              <div className="link-list">
+                {/* The navbar will show these links before you log in */}
+                <Link to="/home">Home</Link>
+                <Link to="/boards">Boards</Link>
+                <Link to="/signup">Sign Up</Link>
+              </div>
+              <div className="logout">
+                {window.localStorage.length ? (
+                  <Link to="/cart">
+                    Cart&#40;{window.localStorage.length}&#41;
+                  </Link>
+                ) : (
+                  <Link to="/cart">Cart</Link>
+                )}
+                <Link to="/login">Login</Link>
+              </div>
+            </div>
+          )}
+        </nav>
+        <hr />
+      </div>
+    )
+  }
+}
 
 /**
  * CONTAINER
  */
+
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id

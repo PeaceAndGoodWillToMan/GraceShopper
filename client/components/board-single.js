@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {getSingleBoard} from '../store/board'
 import {connect} from 'react-redux'
+import {stateChange} from './navbar'
 
 class Single extends Component {
   constructor(props) {
@@ -55,6 +56,7 @@ class Single extends Component {
       data.price += itemData.price
       window.localStorage.setItem(JSON.stringify(item), JSON.stringify(data))
     }
+    stateChange()
     let toast = document.getElementById('add-toast')
     toast.className = 'show'
     setTimeout(function() {
