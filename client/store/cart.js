@@ -45,7 +45,9 @@ export const gotContents = () => {
 }
 export const fetchDeletedcontent = id => dispatch => {
   try {
+    myStorage.removeItem(`{"id":${id}}`)
     dispatch(deleteContent(id))
+    console.log('STORAGE:', myStorage)
   } catch (error) {
     console.log('Something went wrong!')
   }
