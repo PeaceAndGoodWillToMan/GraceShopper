@@ -40,6 +40,14 @@ export const auth = (email, password, method) => async dispatch => {
 
   try {
     dispatch(getUser(res.data))
+    res = await axios.get('/api/orders/login')
+    // res.data.forEach(boardOrder => {
+    //   //window.localStorage.setItem(JSON.stringify({id:boardOrder.boardId}), JSON.stringify({}))
+    //   let key = JSON.stringify(boardOrder)
+
+    // });
+    console.log(res.data)
+    console.log('its a miracle!!!!!!!!!')
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)

@@ -94,22 +94,23 @@ router.get('/login', async (req, res, next) => {
       where: {
         userId: req.session.passport.user,
         fulfilled: false
-      },
-      include: [
-        {
-          model: Board,
-          as: 'boards',
-          required: false,
-          attributes: ['id', 'name'],
-          through: {
-            model: BoardOrder,
-            as: 'boardOrders',
-            attributes: ['quantity']
-          }
-        }
-      ]
+        //   },
+        //   include: [
+        //     {
+        //       model: Board,
+        //       as: 'boards',
+        //       required: false,
+        //       attributes: ['id', 'name', 'imageUrl', 'stock', 'price'],
+        //       through: {
+        //         model: BoardOrder,
+        //         as: 'boardOrders',
+        //         attributes: ['price', 'quantity']
+        //       }
+        //     }
+        //   ]
+      }
     })
-    if (order) {
+    if (order.length > 0) {
       const boardOrder = await BoardOrder.findAll({
         where: {
           orderId: order[0].id
