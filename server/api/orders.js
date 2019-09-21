@@ -116,6 +116,19 @@ router.get('/login', async (req, res, next) => {
           orderId: order[0].id
         }
       })
+      if (boardOrder.length > 0) {
+        boardOrder.forEach(async bo => {
+          const board = await Board.findOne({
+            where: {
+              id: bo.dataValues.boardId
+            }
+          })
+          console.log(board)
+        })
+      } else {
+        console.log('not greater than 1')
+      }
+
       res.json(boardOrder)
     } else {
       res.send('no orders for this user')
