@@ -24,7 +24,7 @@ export const getAllBoards = () => {
       const {data} = await axios.get('/api/boards')
       dispatch(gotAllBoards(data))
     } catch (err) {
-      console.log('Something went wrong!')
+      console.log(err)
     }
   }
 }
@@ -35,7 +35,7 @@ export const getSingleBoard = id => {
       const {data} = await axios.get(`/api/boards/${id}`)
       dispatch(gotSingleBoard(data))
     } catch (err) {
-      console.log('Something went wrong!')
+      console.log(err)
     }
   }
 }

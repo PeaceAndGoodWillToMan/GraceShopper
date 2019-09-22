@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order, BoardOrder, Board} = require('../db/models')
+const {Order, BoardOrder} = require('../db/models')
 
 // get all orders
 router.get('/', async (req, res, next) => {
@@ -80,7 +80,7 @@ router.post('/checkout', async (req, res, next) => {
         quantity: req.body[i].quantity,
         price: req.body[i].price
       }
-      await boardOrder.push(BoardOrder.create(bo))
+      boardOrder.push(await BoardOrder.create(bo))
     }
     res.json({boardOrder})
   } catch (err) {

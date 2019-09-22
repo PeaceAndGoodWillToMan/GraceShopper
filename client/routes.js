@@ -7,6 +7,7 @@ import BoardList from './components/board-list'
 import {me} from './store'
 import SingleBoard from './components/board-single'
 import CartContents from './components/cart'
+import Checkout from './components/checkout'
 
 /**
  * COMPONENT
@@ -25,6 +26,7 @@ class Routes extends Component {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/boards/:id" component={SingleBoard} />
         <Route exact path="/cart" component={CartContents} />
+        <Route exact path="/checkout" component={Checkout} />
       </div>
     )
   }

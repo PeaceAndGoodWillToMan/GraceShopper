@@ -41,7 +41,7 @@ export const gotContents = () => {
       }
       dispatch(gotCart(arr))
     } catch (err) {
-      console.log('Something went wrong!')
+      console.log(err)
     }
   }
 }
@@ -49,16 +49,16 @@ export const fetchDeletedcontent = id => dispatch => {
   try {
     myStorage.removeItem(`{"id":${id}}`)
     dispatch(deleteContent(id))
-  } catch (error) {
-    console.log('Something went wrong!')
+  } catch (err) {
+    console.log(err)
   }
 }
 export const fetchCheckedCartOut = () => dispatch => {
   try {
     myStorage.clear()
     dispatch(checkedCartOut())
-  } catch (error) {
-    console.log(error)
+  } catch (err) {
+    console.log(err)
   }
 }
 
