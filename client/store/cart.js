@@ -5,6 +5,7 @@ const myStorage = window.localStorage
  */
 const GOT_CART = 'GOT_CART'
 const DELETE_CONTENT = 'DELETE_CONTENT'
+const CHECKCARTOUT = 'CHECKOUT'
 
 /**
  * INITIAL STATE
@@ -18,6 +19,7 @@ const initialState = {
  */
 const gotCart = contents => ({type: GOT_CART, contents})
 const deleteContent = id => ({type: DELETE_CONTENT, id})
+const checkedCartOut = () => ({type: CHECKCARTOUT})
 
 /**
  * THUNK CREATORS
@@ -47,9 +49,16 @@ export const fetchDeletedcontent = id => dispatch => {
   try {
     myStorage.removeItem(`{"id":${id}}`)
     dispatch(deleteContent(id))
-    console.log('STORAGE:', myStorage)
   } catch (error) {
     console.log('Something went wrong!')
+  }
+}
+export const fetchCheckedCartOut = () => dispatch => {
+  try {
+    myStorage.clear()
+    dispatch(checkedCartOut())
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -66,6 +75,10 @@ export default function(state = initialState, action) {
         contents: state.contents.filter(
           content => `${content.id}` !== action.id
         )
+      }
+    case CHECKCARTOUT:
+      return {
+        contents: []
       }
     default:
       return state

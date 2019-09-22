@@ -74,12 +74,12 @@ router.post('/checkout', async (req, res, next) => {
     }
     const bo = {
       orderId: order.id,
-      boardId: req.body.localStorage.id,
-      quantity: req.body.localStorage.quantity,
-      price: req.body.localStorage.price
+      boardId: req.body.id,
+      quantity: req.body.quantity,
+      price: req.body.price
     }
     const boardOrder = await BoardOrder.create(bo)
-    res.sendStatus(201).json(boardOrder)
+    res.json(boardOrder)
   } catch (err) {
     next(err)
   }
