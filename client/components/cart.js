@@ -49,7 +49,11 @@ class Cart extends Component {
                 <p>qty: {content.quantity}</p>
                 <p>price: {content.price}</p>
               </div>
-              <button type="button" onClick={this.handleDeleteClick}>
+              <button
+                type="button"
+                onClick={this.handleDeleteClick}
+                value={content.id}
+              >
                 Remove from Cart
               </button>
             </div>
