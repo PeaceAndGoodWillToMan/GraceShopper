@@ -23,16 +23,9 @@ class Cart extends Component {
     this.props.fetchDeletedcontent(event.target.value)
   }
 
-  handleOrderClick(event) {
+  handleOrderClick() {
     event.preventDefault()
-    for (let i = 0; i < this.props.contents.length; i++) {
-      let contents = {
-        id: this.props.contents[i].id,
-        quantity: this.props.contents[i].quantity,
-        price: this.props.contents[i].price
-      }
-      this.props.fetchedCheckout(contents)
-    }
+    this.props.fetchedCheckout(this.props.contents)
     this.props.fetchCheckedCartOut()
   }
 
