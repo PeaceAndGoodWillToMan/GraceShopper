@@ -14,6 +14,7 @@ class Cart extends Component {
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
     this.handleOrderClick = this.handleOrderClick.bind(this)
   }
+
   componentDidMount() {
     this.props.getCart()
   }
@@ -25,8 +26,10 @@ class Cart extends Component {
 
   handleOrderClick() {
     event.preventDefault()
-    this.props.fetchedCheckout(this.props.contents)
     this.props.fetchCheckedCartOut()
+    this.props
+      .fetchedCheckout(this.props.contents)
+      .then(() => this.props.history.push('/checkout'))
   }
 
   render() {
@@ -46,18 +49,18 @@ class Cart extends Component {
                 <p>qty: {content.quantity}</p>
                 <p>price: {content.price}</p>
               </div>
-              <button type="button" onClick={this.handleDeleteClick}>
+              <button
+                type="button"
+                onClick={this.handleDeleteClick}
+                value={content.id}
+              >
                 Remove from Cart
               </button>
             </div>
           ))}
         </ul>
         <div>
-          <button
-            type="button"
-            onClick={this.handleOrderClick}
-            value={contents}
-          >
+          <button type="button" onClick={this.handleOrderClick}>
             Checkout
           </button>
         </div>

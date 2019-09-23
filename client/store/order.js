@@ -10,7 +10,8 @@ const CHECKOUT = 'CHECKOUT'
  * INITIAL STATE
  */
 const initialState = {
-  all: []
+  all: [],
+  checkout: {}
 }
 
 /**
@@ -28,18 +29,17 @@ export const getAllOrders = () => {
       const {data} = await axios.get('/api/orders')
       dispatch(gotAllOrders(data))
     } catch (err) {
-      console.log('Something went wrong!')
+      console.log(err)
     }
   }
 }
 export const fetchedCheckout = order => {
   return async dispatch => {
     try {
-      const {data: checkout} = await axios.post('/api/orders/checkout', order)
-      dispatch(gotCheckout(checkout))
-    } catch (error) {
-      console.log(error)
-      console.log('MY ORDER', order)
+      const {data} = await axios.post('/api/orders/checkout', order)
+      dispatch(gotCheckout(data))
+    } catch (err) {
+      console.log(err)
     }
   }
 }
@@ -51,7 +51,7 @@ export default function(state = initialState, action) {
     case GOT_ALL_ORDERS:
       return {...state, all: action.orders}
     case CHECKOUT:
-      return {...state, all: [...state.all, action.order]}
+      return {...state, checkout: action.order}
     default:
       return state
   }
