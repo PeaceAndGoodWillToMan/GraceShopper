@@ -94,20 +94,6 @@ router.get('/login', async (req, res, next) => {
       where: {
         userId: req.session.passport.user,
         fulfilled: false
-        //   },
-        //   include: [
-        //     {
-        //       model: Board,
-        //       as: 'boards',
-        //       required: false,
-        //       attributes: ['id', 'name', 'imageUrl', 'stock', 'price'],
-        //       through: {
-        //         model: BoardOrder,
-        //         as: 'boardOrders',
-        //         attributes: ['price', 'quantity']
-        //       }
-        //     }
-        //   ]
       }
     })
     if (order.length > 0) {
@@ -116,6 +102,7 @@ router.get('/login', async (req, res, next) => {
           orderId: order[0].id
         }
       })
+
       res.json(boardOrder)
     } else {
       res.send('no orders for this user')
