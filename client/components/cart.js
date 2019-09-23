@@ -7,6 +7,10 @@ import {
 } from '../store/cart'
 import {Link} from 'react-router-dom'
 import {fetchedCheckout} from '../store'
+import CartItem from './cartItem'
+import {stateChange} from './navbar'
+
+const myStorage = window.localStorage
 
 class Cart extends Component {
   constructor(props) {
@@ -26,9 +30,22 @@ class Cart extends Component {
 
   handleOrderClick() {
     event.preventDefault()
+    let arr = []
+    for (const key in myStorage) {
+      if (myStorage.hasOwnProperty(key)) {
+        arr.push({
+          id: JSON.parse(key).id,
+          name: JSON.parse(myStorage[key]).name,
+          imageUrl: JSON.parse(myStorage[key]).imageUrl,
+          quantity: JSON.parse(myStorage[key]).quantity,
+          price: JSON.parse(myStorage[key]).price
+        })
+      }
+    }
     this.props.fetchCheckedCartOut()
+    stateChange()
     this.props
-      .fetchedCheckout(this.props.contents)
+      .fetchedCheckout(arr)
       .then(() => this.props.history.push('/checkout'))
   }
 
@@ -44,11 +61,7 @@ class Cart extends Component {
                 <img src={content.imageUrl} height="100" width="100" />
                 {content.name}
               </Link>
-              <input type="number" min="1" name="qty" className="quantity" />
-              <div>
-                <p>qty: {content.quantity}</p>
-                <p>price: ${content.price}</p>
-              </div>
+              <CartItem content={content} />
               <button
                 type="button"
                 onClick={this.handleDeleteClick}
