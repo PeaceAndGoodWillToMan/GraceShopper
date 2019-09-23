@@ -26,18 +26,18 @@ class Cart extends Component {
     const contents = this.props.contents
 
     return (
-      <div className="cartlist">
+      <div>
         <ul>
           {contents.map(content => (
-            <div key={content.id} id="item">
+            <div key={content.id} className="cart">
               <Link key={content.id} to={`/boards/${content.id}`}>
                 <img src={content.imageUrl} height="100" width="100" />
                 {content.name}
               </Link>
-              <input type="number" min="1" name="qty" />
+              <input type="number" min="1" name="qty" className="quantity" />
               <div>
                 <p>qty: {content.quantity}</p>
-                <p>price: {content.price}</p>
+                <p>price: ${content.price}</p>
               </div>
               <button
                 type="button"
