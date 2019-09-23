@@ -1,12 +1,18 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {gotContents, fetchDeletedcontent} from '../store/cart'
+import {
+  gotContents,
+  fetchDeletedcontent,
+  fetchCheckedCartOut
+} from '../store/cart'
 import {Link} from 'react-router-dom'
+import {fetchedCheckout} from '../store'
 
 class Cart extends Component {
   constructor(props) {
     super(props)
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
+    this.handleOrderClick = this.handleOrderClick.bind(this)
   }
   componentDidMount() {
     this.props.getCart()
@@ -17,9 +23,10 @@ class Cart extends Component {
     this.props.fetchDeletedcontent(event.target.value)
   }
 
-  handleSubmit(event) {
+  handleOrderClick() {
     event.preventDefault()
-    this.props.fetchNewOrder(event.target.value)
+    this.props.fetchedCheckout(this.props.contents)
+    this.props.fetchCheckedCartOut()
   }
 
   render() {
@@ -39,11 +46,7 @@ class Cart extends Component {
                 <p>qty: {content.quantity}</p>
                 <p>price: {content.price}</p>
               </div>
-              <button
-                type="button"
-                onClick={this.handleDeleteClick}
-                value={content.id}
-              >
+              <button type="button" onClick={this.handleDeleteClick}>
                 Remove from Cart
               </button>
             </div>
@@ -51,9 +54,9 @@ class Cart extends Component {
         </ul>
         <div>
           <button
-            type="submit"
-            onSubmit={this.handleSubmit}
-            value={window.localStorage}
+            type="button"
+            onClick={this.handleOrderClick}
+            value={contents}
           >
             Checkout
           </button>
@@ -67,7 +70,9 @@ const mapDispatchToProps = dispatch => ({
   getCart: () => {
     dispatch(gotContents())
   },
-  fetchDeletedcontent: id => dispatch(fetchDeletedcontent(id))
+  fetchDeletedcontent: id => dispatch(fetchDeletedcontent(id)),
+  fetchedCheckout: order => dispatch(fetchedCheckout(order)),
+  fetchCheckedCartOut: () => dispatch(fetchCheckedCartOut())
 })
 
 const mapStateToProps = state => ({

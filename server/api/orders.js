@@ -72,14 +72,17 @@ router.post('/checkout', async (req, res, next) => {
     } else {
       order = await Order.create({fulfilled: true})
     }
-    const bo = {
-      orderId: order.id,
-      boardId: req.body.localStorage.id,
-      quantity: req.body.localStorage.quantity,
-      price: req.body.localStorage.price
+    let boardOrder = []
+    for (let i = 0; i < req.body.length; i++) {
+      const bo = {
+        orderId: order.id,
+        boardId: req.body[i].id,
+        quantity: req.body[i].quantity,
+        price: req.body[i].price
+      }
+      await boardOrder.push(BoardOrder.create(bo))
     }
-    const boardOrder = await BoardOrder.create(bo)
-    res.sendStatus(201).json(boardOrder)
+    res.json({boardOrder})
   } catch (err) {
     next(err)
   }
