@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const BoardOrder = require('./boardOrder')
+const Board = require('./board')
 const db = require('../db')
 
 const Order = db.define('order', {
@@ -43,6 +44,33 @@ Order.logout = async function(userId, storage) {
     }
     await BoardOrder.create(bo)
   })
+}
+
+Order.login = async function(userId) {
+  const order = await Order.findAll({
+    where: {
+      userId,
+      fulfilled: false
+    }
+  })
+  if (order.length > 0) {
+    let boardOrder = await BoardOrder.findAll({
+      where: {
+        orderId: order[0].id
+      }
+    })
+    let boards = []
+    for (let i = 0; i < boardOrder.length; i++) {
+      boardOrder[i] = boardOrder[i].dataValues
+      let board = await Board.findByPk(boardOrder[i].boardId)
+      board = board.dataValues
+      boards.push(board)
+    }
+    console.log({boardOrder, boards})
+    return {boardOrder, boards}
+  } else {
+    return 'no orders for this user'
+  }
 }
 
 Order.prototype.checkout = function(boardOrders) {

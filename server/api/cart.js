@@ -8,7 +8,6 @@ router.post('/checkout', async (req, res, next) => {
   try {
     let order
     if (req.session.passport) {
-      console.log('inside if')
       const userId = req.session.passport.user
       order = await Order.create({userId, fulfilled: true})
     } else {
