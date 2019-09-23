@@ -97,20 +97,6 @@ router.get('/login', async (req, res, next) => {
       where: {
         userId: req.session.passport.user,
         fulfilled: false
-        //   },
-        //   include: [
-        //     {
-        //       model: Board,
-        //       as: 'boards',
-        //       required: false,
-        //       attributes: ['id', 'name', 'imageUrl', 'stock', 'price'],
-        //       through: {
-        //         model: BoardOrder,
-        //         as: 'boardOrders',
-        //         attributes: ['price', 'quantity']
-        //       }
-        //     }
-        //   ]
       }
     })
     if (order.length > 0) {
@@ -119,18 +105,6 @@ router.get('/login', async (req, res, next) => {
           orderId: order[0].id
         }
       })
-      if (boardOrder.length > 0) {
-        boardOrder.forEach(async bo => {
-          const board = await Board.findOne({
-            where: {
-              id: bo.dataValues.boardId
-            }
-          })
-          console.log(board)
-        })
-      } else {
-        console.log('not greater than 1')
-      }
 
       res.json(boardOrder)
     } else {
