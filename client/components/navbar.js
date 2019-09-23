@@ -22,7 +22,7 @@ class Navbar extends React.Component {
         <nav className="navus">
           <h1 id="skatetitle">
             <img
-              src="http://r52.cooltext.com/rendered/cooltext336127181737232.png"
+              src="http://zeus.cooltext.com/images/f5b/f5b8d4ab42e21aa4fbc8b6251a9857b7b9f9b765.png"
               id="skatebar"
             />
           </h1>
