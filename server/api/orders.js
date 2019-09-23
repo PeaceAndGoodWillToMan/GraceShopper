@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order, BoardOrder} = require('../db/models')
+const {Order, BoardOrder, Board} = require('../db/models')
 
 // get all orders
 router.get('/', async (req, res, next) => {
@@ -100,13 +100,19 @@ router.get('/login', async (req, res, next) => {
       }
     })
     if (order.length > 0) {
-      const boardOrder = await BoardOrder.findAll({
+      let boardOrder = await BoardOrder.findAll({
         where: {
           orderId: order[0].id
         }
       })
-
-      res.json(boardOrder)
+      let boards = []
+      for (let i = 0; i < boardOrder.length; i++) {
+        boardOrder[i] = boardOrder[i].dataValues
+        let board = await Board.findByPk(boardOrder[i].boardId)
+        board = board.dataValues
+        boards.push(board)
+      }
+      res.json({boardOrder, boards})
     } else {
       res.send('no orders for this user')
     }
