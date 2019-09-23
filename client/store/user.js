@@ -46,8 +46,6 @@ export const auth = (email, password, method) => async dispatch => {
     //   let key = JSON.stringify(boardOrder)
 
     // });
-    console.log(res.data)
-    console.log('its a miracle!!!!!!!!!')
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)

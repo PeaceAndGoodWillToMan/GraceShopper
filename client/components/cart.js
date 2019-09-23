@@ -1,13 +1,20 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {gotContents, fetchDeletedcontent} from '../store/cart'
+import {
+  gotContents,
+  fetchDeletedcontent,
+  fetchCheckedCartOut
+} from '../store/cart'
 import {Link} from 'react-router-dom'
+import {fetchedCheckout} from '../store'
 
 class Cart extends Component {
   constructor(props) {
     super(props)
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
+    this.handleOrderClick = this.handleOrderClick.bind(this)
   }
+
   componentDidMount() {
     this.props.getCart()
   }
@@ -17,9 +24,12 @@ class Cart extends Component {
     this.props.fetchDeletedcontent(event.target.value)
   }
 
-  handleSubmit(event) {
+  handleOrderClick() {
     event.preventDefault()
-    this.props.fetchNewOrder(event.target.value)
+    this.props.fetchCheckedCartOut()
+    this.props
+      .fetchedCheckout(this.props.contents)
+      .then(() => this.props.history.push('/checkout'))
   }
 
   render() {
@@ -50,11 +60,7 @@ class Cart extends Component {
           ))}
         </ul>
         <div>
-          <button
-            type="submit"
-            onSubmit={this.handleSubmit}
-            value={window.localStorage}
-          >
+          <button type="button" onClick={this.handleOrderClick}>
             Checkout
           </button>
         </div>
@@ -67,7 +73,9 @@ const mapDispatchToProps = dispatch => ({
   getCart: () => {
     dispatch(gotContents())
   },
-  fetchDeletedcontent: id => dispatch(fetchDeletedcontent(id))
+  fetchDeletedcontent: id => dispatch(fetchDeletedcontent(id)),
+  fetchedCheckout: order => dispatch(fetchedCheckout(order)),
+  fetchCheckedCartOut: () => dispatch(fetchCheckedCartOut())
 })
 
 const mapStateToProps = state => ({
