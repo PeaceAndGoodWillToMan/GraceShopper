@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order, BoardOrder, Board} = require('../db/models')
+const {Order} = require('../db/models')
 
 // get all orders by user id for the orders history page
 router.get('/history', async (req, res, next) => {
