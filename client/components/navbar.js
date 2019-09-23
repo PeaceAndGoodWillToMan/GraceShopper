@@ -18,55 +18,89 @@ class Navbar extends React.Component {
   render() {
     const {logoutHandleClick, isLoggedIn} = this.props
     return (
-      <div id="navtitle">
-        <nav className="navus">
-          <h1 id="skatetitle">
-            <img
-              src="http://zeus.cooltext.com/images/f5b/f5b8d4ab42e21aa4fbc8b6251a9857b7b9f9b765.png"
-              id="skatebar"
-            />
-          </h1>
+      <div>
+        <nav>
           {isLoggedIn ? (
-            <div className="links">
-              <div className="link-list">
-                {/* The navbar will show these links after you log in */}
-                <Link to="/home">Home</Link>
-                <Link to="/boards">Boards</Link>
-                <Link to="/orders">Order History</Link>
-              </div>
-              <div className="logout">
-                {window.localStorage.length ? (
-                  <Link to="/cart">Cart&#40;{this.state.cart}&#41;</Link>
-                ) : (
-                  <Link to="/cart">Cart</Link>
-                )}
-                <a href="#" onClick={logoutHandleClick}>
-                  Logout
-                </a>
+            <div>
+              <div>
+                <div className="allinks">
+                  <img
+                    src="http://zeus.cooltext.com/images/f5b/f5b8d4ab42e21aa4fbc8b6251a9857b7b9f9b765.png"
+                    className="logo"
+                  />
+                  {/* The navbar will show these links after you log in */}
+                  <Link to="/home">
+                    <img src="https://images.cooltext.com/5329802.png" />
+                  </Link>
+                  <Link to="/boards">
+                    <img src="https://images.cooltext.com/5329805.png" />
+                  </Link>
+                  <Link to="/orders">
+                    <img src="https://images.cooltext.com/5329807.png" />
+                  </Link>
+                  {window.localStorage.length ? (
+                    <Link to="/cart">
+                      <img
+                        src="https://purepng.com/public/uploads/large/purepng.com-shopping-cartshoppingcarttrolleycarriagebuggysupermarkets-1421526532331jylag.png"
+                        className="cartpic"
+                      />&#40;{this.state.cart}&#41;
+                    </Link>
+                  ) : (
+                    <Link to="/cart">
+                      <img
+                        src="https://purepng.com/public/uploads/large/purepng.com-shopping-cartshoppingcarttrolleycarriagebuggysupermarkets-1421526532331jylag.png"
+                        className="cartpic"
+                      />
+                    </Link>
+                  )}
+                  <a href="#" onClick={logoutHandleClick}>
+                    <img src="https://images.cooltext.com/5329809.png" />
+                  </a>
+                </div>
               </div>
             </div>
           ) : (
-            <div className="links">
-              <div className="link-list">
-                {/* The navbar will show these links before you log in */}
-                <Link to="/home">Home</Link>
-                <Link to="/boards">Boards</Link>
-                <Link to="/signup">Sign Up</Link>
-              </div>
-              <div className="logout">
-                {window.localStorage.length ? (
-                  <Link to="/cart">
-                    Cart&#40;{window.localStorage.length}&#41;
+            <div>
+              <div>
+                <div className="allinks">
+                  <img
+                    src="http://zeus.cooltext.com/images/f5b/f5b8d4ab42e21aa4fbc8b6251a9857b7b9f9b765.png"
+                    className="logo"
+                  />
+
+                  {/* The navbar will show these links before you log in */}
+                  <Link to="/home">
+                    <img src="https://images.cooltext.com/5329802.png" />
                   </Link>
-                ) : (
-                  <Link to="/cart">Cart</Link>
-                )}
-                <Link to="/login">Login</Link>
+                  <Link to="/boards">
+                    <img src="https://images.cooltext.com/5329805.png" />
+                  </Link>
+                  <Link to="/signup">
+                    <img src="https://images.cooltext.com/5329806.png" />
+                  </Link>
+                  {window.localStorage.length ? (
+                    <Link to="/cart">
+                      <img
+                        src="https://purepng.com/public/uploads/large/purepng.com-shopping-cartshoppingcarttrolleycarriagebuggysupermarkets-1421526532331jylag.png"
+                        className="cartpic"
+                      />&#40;{window.localStorage.length}&#41;
+                    </Link>
+                  ) : (
+                    <Link to="/cart">
+                      <img
+                        src="https://purepng.com/public/uploads/large/purepng.com-shopping-cartshoppingcarttrolleycarriagebuggysupermarkets-1421526532331jylag.png"
+                        className="cartpic"
+                      />
+                    </Link>
+                  )}
+                  <Link to="/login">
+                    <img src="https://images.cooltext.com/5329827.png" />
+                  </Link>
+                </div>
               </div>
             </div>
           )}
         </nav>
-        <hr />
       </div>
     )
   }
@@ -96,11 +130,11 @@ const mapDispatch = dispatch => {
       }
       try {
         console.log(window.localStorage)
-        const data = await axios.post('/api/orders/logout', payload)
+        const data = await axios.post('/api/cart/logout', payload)
         window.localStorage.clear()
         console.log(data)
       } catch (err) {
-        console.log('Error with axios.post /api/orders/logout')
+        console.log('Error with axios.post /api/cart/logout')
       }
       dispatch(logout())
     }

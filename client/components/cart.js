@@ -53,10 +53,10 @@ class Cart extends Component {
     const contents = this.props.contents
 
     return (
-      <div className="cartlist">
+      <div>
         <ul>
           {contents.map(content => (
-            <div key={content.id} id="item">
+            <div key={content.id} className="cart">
               <Link key={content.id} to={`/boards/${content.id}`}>
                 <img src={content.imageUrl} height="100" width="100" />
                 {content.name}
