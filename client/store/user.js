@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import {stateChange} from '../components/navbar'
 
 /**
  * ACTION TYPES
@@ -40,12 +41,19 @@ export const auth = (email, password, method) => async dispatch => {
 
   try {
     dispatch(getUser(res.data))
-    res = await axios.get('/api/orders/login')
-    // res.data.forEach(boardOrder => {
-    //   //window.localStorage.setItem(JSON.stringify({id:boardOrder.boardId}), JSON.stringify({}))
-    //   let key = JSON.stringify(boardOrder)
-
-    // });
+    const {data} = await axios.get('/api/orders/login')
+    for (let i = 0; i < data.boards.length; i++) {
+      let key = JSON.stringify({id: data.boards[i].id})
+      let value = JSON.stringify({
+        name: data.boards[i].name,
+        imageUrl: data.boards[i].imageUrl,
+        quantity: data.boardOrder[i].quantity,
+        price: data.boards[i].price * data.boardOrder[i].quantity,
+        stock: data.boards[i].stock
+      })
+      window.localStorage.setItem(key, value)
+    }
+    stateChange()
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
