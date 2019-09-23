@@ -36,7 +36,7 @@ export const getAllOrders = () => {
 export const fetchedCheckout = order => {
   return async dispatch => {
     try {
-      const {data} = await axios.post('/api/orders/checkout', order)
+      const {data} = await axios.post('/api/cart/checkout', order)
       dispatch(gotCheckout(data))
     } catch (err) {
       console.log(err)
