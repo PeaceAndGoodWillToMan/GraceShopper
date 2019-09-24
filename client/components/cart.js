@@ -35,8 +35,9 @@ class Cart extends Component {
     setTimeout(function() {
       toast.className = toast.className.replace('show', '')
     }, 3000)
+    const data = retrieveStorage()
     this.props
-      .fetchedCheckout(retrieveStorage())
+      .fetchedCheckout(data)
       .then(() => this.props.history.push('/checkout'))
     this.props.fetchCheckedCartOut()
     stateChange()

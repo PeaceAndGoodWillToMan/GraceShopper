@@ -73,7 +73,7 @@ Order.login = async function(userId) {
   }
 }
 
-Order.prototype.checkout = function(boardOrders) {
+Order.prototype.checkout = async function(boardOrders) {
   let boardOrder = []
   for (let i = 0; i < boardOrders.length; i++) {
     const bo = {
@@ -82,7 +82,7 @@ Order.prototype.checkout = function(boardOrders) {
       quantity: boardOrders[i].quantity,
       price: boardOrders[i].price
     }
-    boardOrder.push(BoardOrder.create(bo))
+    boardOrder.push(await BoardOrder.create(bo))
   }
   return boardOrder
 }
