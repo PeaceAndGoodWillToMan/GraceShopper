@@ -13,6 +13,7 @@ class Single extends Component {
     this.props.getBoard(id)
   }
   render() {
+    console.log(this.props)
     const {name, price, imageUrl, stock} = this.props.selected
     return (
       <div id="singleBoard">

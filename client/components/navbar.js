@@ -38,6 +38,7 @@ class Navbar extends React.Component {
                   <Link to="/orders">
                     <img src="https://images.cooltext.com/5329807.png" />
                   </Link>
+                  <Link to="/profile">Profile</Link>
                   {window.localStorage.length ? (
                     <Link to="/cart">
                       <img
