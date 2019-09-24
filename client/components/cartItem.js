@@ -42,16 +42,18 @@ class CartItem extends Component {
   render() {
     return (
       <div>
-        <label htmlFor="qty">Qty: </label>
-        <input
-          type="number"
-          min="1"
-          name="quantity"
-          value={this.state.quantity}
-          id="qty"
-          onChange={this.handleChange}
-        />
-        <p>Price: {this.state.price}</p>
+        <span className="qty">
+          <label htmlFor="qty">Qty: </label>
+          <input
+            type="number"
+            min="1"
+            name="quantity"
+            value={this.state.quantity}
+            id="qty"
+            onChange={this.handleChange}
+          />
+        </span>
+        <p>Price: ${this.state.price}.00</p>
       </div>
     )
   }

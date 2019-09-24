@@ -51,13 +51,16 @@ class Cart extends Component {
         <ul>
           {contents.map(content => (
             <div key={content.id} className="cart">
-              <Link key={content.id} to={`/boards/${content.id}`}>
-                <img src={content.imageUrl} height="100" width="100" />
-                {content.name}
-              </Link>
+              <div>
+                <Link key={content.id} to={`/boards/${content.id}`}>
+                  <p id="boardname">{content.name}</p>
+                  <img src={content.imageUrl} height="175" width="175" />
+                </Link>
+              </div>
               <CartItem content={content} />
               <button
                 type="button"
+                className="delete_btn"
                 onClick={this.handleDeleteClick}
                 value={content.id}
               >
@@ -67,9 +70,11 @@ class Cart extends Component {
           ))}
         </ul>
         <div>
-          <button type="button" onClick={this.handleOrderClick}>
-            Checkout
-          </button>
+          {window.localStorage.length ? (
+            <button id="chkout" type="button" onClick={this.handleOrderClick}>
+              Checkout
+            </button>
+          ) : null}
         </div>
         <div id="checkout-toast">Thank you for your purchase!</div>
       </div>

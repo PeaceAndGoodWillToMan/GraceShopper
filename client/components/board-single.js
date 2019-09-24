@@ -22,7 +22,7 @@ class Single extends Component {
           <p>Price: ${price}</p>
           {stock < 10 ? <p>Stock: {stock} </p> : ' '}
         </div>
-        <button type="button" onClick={this.handleClick}>
+        <button className="btn" type="button" onClick={this.handleClick}>
           Add to Cart
         </button>
         <div id="add-toast">Item added to cart!</div>
