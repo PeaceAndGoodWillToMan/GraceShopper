@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {gotContents} from '../store/cart'
+import {gotContents} from '../../store/cart'
 import {connect} from 'react-redux'
 
 const myStorage = window.localStorage

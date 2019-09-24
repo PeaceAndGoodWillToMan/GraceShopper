@@ -5,11 +5,11 @@ import {
   fetchDeletedcontent,
   fetchCheckedCartOut,
   retrieveStorage
-} from '../store/cart'
+} from '../../store/cart'
 import {Link} from 'react-router-dom'
-import {fetchedCheckout} from '../store'
+import {fetchedCheckout} from '../../store'
 import CartItem from './cartItem'
-import {stateChange} from './navbar'
+import {stateChange} from '../navbar'
 
 class Cart extends Component {
   constructor(props) {
