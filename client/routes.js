@@ -8,6 +8,7 @@ import {me} from './store'
 import SingleBoard from './components/board-single'
 import CartContents from './components/cart/cart'
 import Checkout from './components/checkout'
+import orderHistoryList from './components/order/order-history-list'
 
 /**
  * COMPONENT
@@ -28,6 +29,7 @@ class Routes extends Component {
         <Route exact path="/boards/:id" component={SingleBoard} />
         <Route exact path="/cart" component={CartContents} />
         <Route exact path="/checkout" component={Checkout} />
+        <Route exact path="/orderHistory" component={orderHistoryList} />
       </div>
     )
   }

@@ -1,22 +1,29 @@
 body {
   font-family: sans-serif;
 }
-
 a {
   text-decoration: none;
-  color: rgb(255, 251, 251);
+  color: rgb(31, 177, 245);
   text-shadow: 0px 2px 3px rgb(0, 0, 0);
 }
-
+#full {
+  padding-left: 3px;
+  color: #00ff00;
+}
+#orderNum {
+  color: white;
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  padding-right: 4px;
+  font-weight: bold;
+}
+.history {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 a:hover {
   color: #00ff00;
-  transform: scale(1.2);
-}
-
-#boardname {
-  color: rgb(255, 251, 251);
-  text-shadow: 0px 3px 4px rgb(0, 0, 0);
-  font-size: 180%;
+  transform: scale(1.1);
 }
 
 .welcome {
@@ -25,21 +32,21 @@ a:hover {
 }
 
 p,
-label {
-  color: rgb(255, 251, 251);
-  text-shadow: 0px 7px 10px rgb(0, 0, 0);
+label,
+#boardname {
+  color: rgb(31, 177, 245);
+  text-shadow: 0px 2px 3px rgb(0, 0, 0);
   font-size: 150%;
 }
 
 h1 {
   color: rgb(31, 177, 245);
-  text-shadow: 0px 2px 3px rgb(0, 0, 0);
   font-size: 200%;
-  font-weight: bolder;
+  text-shadow: 0px 2px 3px rgb(0, 0, 0);
 }
 
 small {
-  color: rgb(255, 251, 251);
+  color: rgb(31, 177, 245);
   text-shadow: 0px 2px 3px rgb(0, 0, 0);
 }
 
@@ -105,7 +112,7 @@ ul {
   display: flex;
   list-style-type: none;
   justify-content: center;
-  color: rgb(255, 246, 246);
+  color: rgb(31, 177, 245);
   text-shadow: 0px 2px 3px rgb(0, 0, 0);
 }
 
@@ -114,10 +121,10 @@ li {
   justify-content: center;
   color: rgb(255, 251, 251); /* CSS link color (red) */
 }
-li:hover {
+/* li:hover {
   color: #00ff00;
-  transform: scale(1.2);
-}
+  transform: scale(1.1);
+} */
 
 .wrappity {
   display: flex;

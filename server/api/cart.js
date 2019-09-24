@@ -9,6 +9,11 @@ router.post('/checkout', async (req, res, next) => {
     let order
     if (req.session.passport) {
       const userId = req.session.passport.user
+      Order.destroy({
+        where: {
+          fulfilled: false
+        }
+      })
       order = await Order.create({userId, fulfilled: true})
     } else {
       order = await Order.create({fulfilled: true})
