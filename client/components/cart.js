@@ -29,12 +29,16 @@ class Cart extends Component {
 
   handleOrderClick() {
     event.preventDefault()
-    let arr = []
+    let toast = document.getElementById('checkout-toast')
+    toast.className = 'show'
+    setTimeout(function() {
+      toast.className = toast.className.replace('show', '')
+    }, 3000)
     retrieveStorage()
     this.props.fetchCheckedCartOut()
     stateChange()
     this.props
-      .fetchedCheckout(arr)
+      .fetchedCheckout([])
       .then(() => this.props.history.push('/checkout'))
   }
 
@@ -67,6 +71,7 @@ class Cart extends Component {
             Checkout
           </button>
         </div>
+        <div id="checkout-toast">Thank you for your purchase!</div>
       </div>
     )
   }
