@@ -80,9 +80,9 @@ export const auth = (email, password, method) => async dispatch => {
           window.localStorage.setItem(key, value)
         }
       }
-      stateChange()
     }
     dispatch(gotContents())
+    stateChange()
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
