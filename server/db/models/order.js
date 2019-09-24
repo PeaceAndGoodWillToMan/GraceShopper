@@ -66,7 +66,6 @@ Order.login = async function(userId) {
       board = board.dataValues
       boards.push(board)
     }
-    console.log({boardOrder, boards})
     return {boardOrder, boards}
   } else {
     return 'no orders for this user'
