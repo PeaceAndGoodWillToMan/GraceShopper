@@ -10,10 +10,7 @@ const GOT_SINGLE_BOARD = 'GOT_SINGLE_BOARD'
  * ACTION CREATORS
  */
 const gotAllBoards = boards => ({type: GOT_ALL_BOARDS, boards})
-const gotSingleBoard = board => ({
-  type: GOT_SINGLE_BOARD,
-  board
-})
+const gotSingleBoard = board => ({type: GOT_SINGLE_BOARD, board})
 
 /**
  * THUNK CREATORS

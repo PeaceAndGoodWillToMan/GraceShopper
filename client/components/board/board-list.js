@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getAllBoards} from '../store/board'
+import {getAllBoards} from '../../store/board'
 import ListItem from './board-list-item'
 import {Link} from 'react-router-dom'
 

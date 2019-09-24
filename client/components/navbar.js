@@ -35,7 +35,7 @@ class Navbar extends React.Component {
                   <Link to="/boards">
                     <img src="https://images.cooltext.com/5329805.png" />
                   </Link>
-                  <Link to="/orders">
+                  <Link to="/orderHistory">
                     <img src="https://images.cooltext.com/5329807.png" />
                   </Link>
                   {window.localStorage.length ? (

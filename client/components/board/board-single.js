@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {getSingleBoard} from '../store/board'
+import {getSingleBoard} from '../../store/board'
 import {connect} from 'react-redux'
-import {stateChange} from './navbar'
+import {stateChange} from '../navbar'
 
 class Single extends Component {
   constructor(props) {
