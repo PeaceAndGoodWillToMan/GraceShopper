@@ -1,6 +1,6 @@
 'use strict'
-
 const {db, User, Board, Order, BoardOrder} = require('../server/db/models')
+const {admins} = require('../secrets')
 
 async function seed() {
   await db.sync({force: true})
@@ -8,21 +8,20 @@ async function seed() {
 
   const users = await Promise.all([
     User.create({
-      firstName: 'dave',
-      lastName: 'poop',
-      email: 'cody@email.com',
-      password: '123',
-      address: '84 lexington ave',
-      isAdmin: true
-    }),
-    User.create({
       firstName: 'chazz',
       lastName: 'micheal',
       email: 'murphy@email.com',
       password: '123',
-      address: '1234 dunkin ave',
       isAdmin: false
-    })
+    }),
+    User.create({
+      firstName: 'cody',
+      lastName: 'pug',
+      email: 'cody@email.com',
+      password: '123',
+      isAdmin: false
+    }),
+    ...admins.map(admin => User.create(admin))
   ])
 
   // remember to add $ when rendering price
