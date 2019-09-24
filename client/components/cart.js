@@ -24,8 +24,8 @@ class Cart extends Component {
 
   handleDeleteClick(event) {
     event.preventDefault()
-    stateChange()
     this.props.fetchDeletedcontent(event.target.value)
+    stateChange()
   }
 
   handleOrderClick() {

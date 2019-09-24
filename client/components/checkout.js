@@ -3,7 +3,10 @@ import {connect} from 'react-redux'
 
 class CheckoutComponent extends Component {
   render() {
-    const orderNum = this.props.checkout[0].orderId
+    let orderNum
+    if (this.props.checkout) {
+      orderNum = this.props.checkout[0].orderId
+    }
     return this.props.checkout ? (
       <div>
         <p>Your order id is: {orderNum}</p>
