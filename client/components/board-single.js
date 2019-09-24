@@ -18,7 +18,7 @@ class Single extends Component {
       <div id="singleBoard">
         <div>
           <img src={imageUrl} height="200" width="200" className="imgrounder" />
-          <h1>{name}</h1>
+          <p>{name}</p>
           <p>Price: ${price}</p>
           {stock < 10 ? <p>Stock: {stock} </p> : ' '}
         </div>
