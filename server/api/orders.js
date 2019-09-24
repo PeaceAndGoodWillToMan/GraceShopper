@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order} = require('../db/models')
+const {Order, BoardOrder} = require('../db/models')
 
 // get all orders by user id for the orders history page
 router.get('/history', async (req, res, next) => {
@@ -8,6 +8,20 @@ router.get('/history', async (req, res, next) => {
       await Order.findAll({
         where: {
           userId: req.session.passport.user
+        }
+      })
+    )
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/history/:id', async (req, res, next) => {
+  try {
+    res.json(
+      await BoardOrder.findAll({
+        where: {
+          orderId: req.params.id
         }
       })
     )
