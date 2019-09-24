@@ -13,9 +13,10 @@ class List extends Component {
     return (
       <div>
         <ul className="wrappity">
-          {this.props.orderHistory.map(obj => (
+          {this.props.orderHistory.map((obj, i) => (
             <div key={obj.order.id} id="item">
-              {obj.order.id}. Fulfilled: {String(obj.order.fulfilled)}
+              <div id="orderNum">#{i + 1}. </div> Fulfilled:{' '}
+              <div id="full">{String(obj.order.fulfilled)}</div>
               <ul className="history">
                 {obj.boardOrders.map(bo => (
                   <BoardOrder

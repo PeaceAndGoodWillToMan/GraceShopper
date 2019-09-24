@@ -1,16 +1,29 @@
 body {
   font-family: sans-serif;
 }
-
 a {
   text-decoration: none;
   color: rgb(31, 177, 245);
   text-shadow: 0px 2px 3px rgb(0, 0, 0);
 }
-
+#full {
+  padding-left: 3px;
+  color: #00ff00;
+}
+#orderNum {
+  color: white;
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  padding-right: 4px;
+  font-weight: bold;
+}
+.history {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 a:hover {
   color: #00ff00;
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .welcome {
@@ -108,10 +121,10 @@ li {
   justify-content: center;
   color: rgb(255, 251, 251); /* CSS link color (red) */
 }
-li:hover {
+/* li:hover {
   color: #00ff00;
-  transform: scale(1.2);
-}
+  transform: scale(1.1);
+} */
 
 .wrappity {
   display: flex;
