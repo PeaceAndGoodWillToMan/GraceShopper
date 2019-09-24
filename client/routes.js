@@ -20,6 +20,7 @@ class Routes extends Component {
   render() {
     return (
       <div>
+        <Route exact path="/" component={UserHome} />
         <Route exact path="/home" component={UserHome} />
         <Route exact path="/boards" component={BoardList} />
         <Route exact path="/login" component={Login} />

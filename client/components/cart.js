@@ -24,6 +24,7 @@ class Cart extends Component {
 
   handleDeleteClick(event) {
     event.preventDefault()
+    stateChange()
     this.props.fetchDeletedcontent(event.target.value)
   }
 
@@ -34,18 +35,16 @@ class Cart extends Component {
     setTimeout(function() {
       toast.className = toast.className.replace('show', '')
     }, 3000)
-    retrieveStorage()
-    this.props.fetchCheckedCartOut()
-    stateChange()
+    console.log(retrieveStorage())
     this.props
-      .fetchedCheckout([])
+      .fetchedCheckout(retrieveStorage())
       .then(() => this.props.history.push('/checkout'))
+    // this.props.fetchCheckedCartOut()
+    // stateChange()
   }
 
   render() {
     const contents = this.props.contents
-    console.log(contents)
-
     return (
       <div>
         <ul>
@@ -71,10 +70,12 @@ class Cart extends Component {
         </ul>
         <div>
           {window.localStorage.length ? (
-            <button id="chkout" type="button" onClick={this.handleOrderClick}>
+            <button type="button" id="chkout" onClick={this.handleOrderClick}>
               Checkout
             </button>
-          ) : null}
+          ) : (
+            <p>You have nothing in your cart!</p>
+          )}
         </div>
         <div id="checkout-toast">Thank you for your purchase!</div>
       </div>
