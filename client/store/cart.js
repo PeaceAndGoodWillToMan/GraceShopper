@@ -1,5 +1,20 @@
 const myStorage = window.localStorage
 
+export const retrieveStorage = () => {
+  let arr = []
+  for (const key in myStorage) {
+    if (myStorage.hasOwnProperty(key)) {
+      arr.push({
+        id: JSON.parse(key).id,
+        name: JSON.parse(myStorage[key]).name,
+        imageUrl: JSON.parse(myStorage[key]).imageUrl,
+        quantity: JSON.parse(myStorage[key]).quantity,
+        price: JSON.parse(myStorage[key]).price
+      })
+    }
+  }
+  return arr
+}
 /**
  * ACTION TYPES
  */
@@ -27,19 +42,7 @@ const checkedCartOut = () => ({type: CHECKCARTOUT})
 export const gotContents = () => {
   return dispatch => {
     try {
-      let arr = []
-      for (const key in myStorage) {
-        if (myStorage.hasOwnProperty(key)) {
-          arr.push({
-            id: JSON.parse(key).id,
-            name: JSON.parse(myStorage[key]).name,
-            imageUrl: JSON.parse(myStorage[key]).imageUrl,
-            quantity: JSON.parse(myStorage[key]).quantity,
-            price: JSON.parse(myStorage[key]).price
-          })
-        }
-      }
-      dispatch(gotCart(arr))
+      dispatch(gotCart(retrieveStorage()))
     } catch (err) {
       console.log(err)
     }

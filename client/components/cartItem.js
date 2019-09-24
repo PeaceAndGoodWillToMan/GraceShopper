@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import {gotContents} from '../store/cart'
+import {connect} from 'react-redux'
 
 const myStorage = window.localStorage
 
@@ -10,6 +12,10 @@ class CartItem extends Component {
       price: this.props.content.price
     }
     this.handleChange = this.handleChange.bind(this)
+  }
+
+  componentDidMount() {
+    this.props.getCart()
   }
 
   handleChange(evt) {
@@ -30,6 +36,7 @@ class CartItem extends Component {
     })
     let key = JSON.stringify({id: this.props.content.id})
     myStorage.setItem(key, newVal)
+    this.props.getCart()
   }
 
   render() {
@@ -50,4 +57,11 @@ class CartItem extends Component {
   }
 }
 
-export default CartItem
+const mapDispatchToProps = dispatch => ({
+  getCart: () => {
+    dispatch(gotContents())
+  }
+})
+
+const cartItem = connect(null, mapDispatchToProps)(CartItem)
+export default cartItem

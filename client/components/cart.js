@@ -3,14 +3,13 @@ import {connect} from 'react-redux'
 import {
   gotContents,
   fetchDeletedcontent,
-  fetchCheckedCartOut
+  fetchCheckedCartOut,
+  retrieveStorage
 } from '../store/cart'
 import {Link} from 'react-router-dom'
 import {fetchedCheckout} from '../store'
 import CartItem from './cartItem'
 import {stateChange} from './navbar'
-
-const myStorage = window.localStorage
 
 class Cart extends Component {
   constructor(props) {
@@ -31,17 +30,7 @@ class Cart extends Component {
   handleOrderClick() {
     event.preventDefault()
     let arr = []
-    for (const key in myStorage) {
-      if (myStorage.hasOwnProperty(key)) {
-        arr.push({
-          id: JSON.parse(key).id,
-          name: JSON.parse(myStorage[key]).name,
-          imageUrl: JSON.parse(myStorage[key]).imageUrl,
-          quantity: JSON.parse(myStorage[key]).quantity,
-          price: JSON.parse(myStorage[key]).price
-        })
-      }
-    }
+    retrieveStorage()
     this.props.fetchCheckedCartOut()
     stateChange()
     this.props
@@ -51,6 +40,7 @@ class Cart extends Component {
 
   render() {
     const contents = this.props.contents
+    console.log(contents)
 
     return (
       <div>
