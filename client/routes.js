@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import {withRouter, Route} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, Cart} from './components'
 import Profile from './components/profile'
 import BoardList from './components/board-list'
 import {me} from './store'
 import SingleBoard from './components/board-single'
-import CartContents from './components/cart'
+import CartContents from './components/cart/cart'
 import Checkout from './components/checkout'
+import orderHistoryList from './components/order/order-history-list'
 
 /**
  * COMPONENT
@@ -30,6 +31,7 @@ class Routes extends Component {
         <Route exact path="/boards/:id" component={SingleBoard} />
         <Route exact path="/cart" component={CartContents} />
         <Route exact path="/checkout" component={Checkout} />
+        <Route exact path="/orderHistory" component={orderHistoryList} />
       </div>
     )
   }

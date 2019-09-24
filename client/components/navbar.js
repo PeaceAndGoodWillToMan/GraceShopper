@@ -35,7 +35,7 @@ class Navbar extends React.Component {
                   <Link to="/boards">
                     <img src="https://images.cooltext.com/5329805.png" />
                   </Link>
-                  <Link to="/orders">
+                  <Link to="/orderHistory">
                     <img src="https://images.cooltext.com/5329807.png" />
                   </Link>
                   <Link to="/profile">Profile</Link>
@@ -120,21 +120,23 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     async logoutHandleClick() {
-      let payload = {}
-      for (let key in window.localStorage) {
-        if (key[0] === '{') {
-          let valParse = JSON.parse(window.localStorage.getItem(key))
-          let idKey = JSON.parse(key).id
-          let temp = {[idKey]: valParse}
-          payload = {...payload, ...temp}
+      if (window.localStorage.length) {
+        let payload = {}
+        for (let key in window.localStorage) {
+          if (key[0] === '{') {
+            let valParse = JSON.parse(window.localStorage.getItem(key))
+            let idKey = JSON.parse(key).id
+            let temp = {[idKey]: valParse}
+            payload = {...payload, ...temp}
+          }
+        }
+        try {
+          await axios.post('/api/cart/logout', payload)
+        } catch (err) {
+          console.log('Error with axios.post /api/cart/logout')
         }
       }
-      try {
-        await axios.post('/api/cart/logout', payload)
-        window.localStorage.clear()
-      } catch (err) {
-        console.log('Error with axios.post /api/cart/logout')
-      }
+      window.localStorage.clear()
       dispatch(logout())
     }
   }
