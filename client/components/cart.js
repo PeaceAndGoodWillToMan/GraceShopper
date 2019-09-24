@@ -24,6 +24,7 @@ class Cart extends Component {
 
   handleDeleteClick(event) {
     event.preventDefault()
+    stateChange()
     this.props.fetchDeletedcontent(event.target.value)
   }
 
@@ -34,30 +35,31 @@ class Cart extends Component {
     setTimeout(function() {
       toast.className = toast.className.replace('show', '')
     }, 3000)
-    retrieveStorage()
+    const data = retrieveStorage()
+    this.props
+      .fetchedCheckout(data)
+      .then(() => this.props.history.push('/checkout'))
     this.props.fetchCheckedCartOut()
     stateChange()
-    this.props
-      .fetchedCheckout([])
-      .then(() => this.props.history.push('/checkout'))
   }
 
   render() {
     const contents = this.props.contents
-    console.log(contents)
-
     return (
       <div>
         <ul>
           {contents.map(content => (
             <div key={content.id} className="cart">
-              <Link key={content.id} to={`/boards/${content.id}`}>
-                <img src={content.imageUrl} height="100" width="100" />
-                {content.name}
-              </Link>
+              <div>
+                <Link key={content.id} to={`/boards/${content.id}`}>
+                  <p id="boardname">{content.name}</p>
+                  <img src={content.imageUrl} height="175" width="175" />
+                </Link>
+              </div>
               <CartItem content={content} />
               <button
                 type="button"
+                className="delete_btn"
                 onClick={this.handleDeleteClick}
                 value={content.id}
               >
@@ -67,9 +69,13 @@ class Cart extends Component {
           ))}
         </ul>
         <div>
-          <button type="button" onClick={this.handleOrderClick}>
-            Checkout
-          </button>
+          {window.localStorage.length ? (
+            <button type="button" id="chkout" onClick={this.handleOrderClick}>
+              Checkout
+            </button>
+          ) : (
+            <p>You have nothing in your cart!</p>
+          )}
         </div>
         <div id="checkout-toast">Thank you for your purchase!</div>
       </div>

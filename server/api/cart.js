@@ -13,7 +13,8 @@ router.post('/checkout', async (req, res, next) => {
     } else {
       order = await Order.create({fulfilled: true})
     }
-    order.checkout(req.body)
+    const data = await order.checkout(req.body)
+    res.json(data)
   } catch (err) {
     next(err)
   }

@@ -9,14 +9,12 @@ const UserHome = props => {
   const {email, isLoggedIn} = props
 
   return isLoggedIn ? (
-    <div>
-      <h3>Welcome, {email}</h3>
-      {/* insert board all */}
+    <div className="welcome">
+      <h1>Welcome back {email}!!</h1>
     </div>
   ) : (
-    <div>
-      <h3>Welcome, guest!</h3>
-      {/* insert board all */}
+    <div className="welcome">
+      <h1>Welcome, user!</h1>
     </div>
   )
 }

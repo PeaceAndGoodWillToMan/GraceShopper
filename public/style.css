@@ -13,9 +13,29 @@ a:hover {
   transform: scale(1.2);
 }
 
-p {
+#boardname {
   color: rgb(255, 251, 251);
+  text-shadow: 0px 3px 4px rgb(0, 0, 0);
+  font-size: 180%;
+}
+
+.welcome {
+  display: flex;
+  justify-content: center;
+}
+
+p,
+label {
+  color: rgb(255, 251, 251);
+  text-shadow: 0px 7px 10px rgb(0, 0, 0);
+  font-size: 150%;
+}
+
+h1 {
+  color: rgb(31, 177, 245);
   text-shadow: 0px 2px 3px rgb(0, 0, 0);
+  font-size: 200%;
+  font-weight: bolder;
 }
 
 small {
@@ -30,7 +50,7 @@ label {
 .allinks {
   display: flex;
   align-items: center;
-  justify-items: space-between;
+  justify-items: center;
   flex-wrap: wrap;
 }
 
@@ -61,6 +81,10 @@ html {
 }
 
 .cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border-radius: 40px;
   background: rgba(71, 71, 71, 0.199);
   padding: 25px;
@@ -70,6 +94,11 @@ html {
 .cartpic {
   height: 50px;
   width: 50px;
+}
+
+.qty {
+  display: flex;
+  padding-top: 20px;
 }
 
 ul {
@@ -112,6 +141,73 @@ li:hover {
 
 .imgrounder {
   border-radius: 40px;
+}
+
+#chkout {
+  width: 100px;
+  margin: -20px -50px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+}
+
+.btn,
+#chkout {
+  border-top: 1px solid #21a0f5;
+  background: #21a0f5;
+  padding: 5px 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  text-shadow: rgba(0, 0, 0, 0.4) 0 1px 0;
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+  vertical-align: middle;
+}
+.btn:hover,
+#chkout:hover {
+  border-top-color: #06609c;
+  background: #06609c;
+  color: #ccc;
+}
+.btn:active,
+#chkout:active {
+  border-top-color: #1b435e;
+  background: #1b435e;
+}
+
+.delete_btn {
+  border-top: 1px solid #bb1515;
+  background: #bb1515;
+  padding: 5px 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+  text-shadow: rgba(0, 0, 0, 0.4) 0 1px 0;
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+  vertical-align: middle;
+}
+.delete_btn:hover {
+  border-top-color: #e94d4d;
+  background: #e94d4d;
+  color: #ccc;
+}
+.delete_btn:active {
+  border-top-color: #eb7e7e;
+  background: #eb7e7e;
+}
+
+#qty {
+  width: 20%;
 }
 
 #add-toast {
