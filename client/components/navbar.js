@@ -24,13 +24,9 @@ class Navbar extends React.Component {
             <div>
               <div>
                 <div className="allinks">
-                  <img
-                    src="http://zeus.cooltext.com/images/f5b/f5b8d4ab42e21aa4fbc8b6251a9857b7b9f9b765.png"
-                    className="logo"
-                  />
                   {/* The navbar will show these links after you log in */}
                   <Link to="/home">
-                    <img src="https://images.cooltext.com/5329802.png" />
+                    <img src="http://zeus.cooltext.com/images/f5b/f5b8d4ab42e21aa4fbc8b6251a9857b7b9f9b765.png" />
                   </Link>
                   <Link to="/boards">
                     <img src="https://images.cooltext.com/5329805.png" />
@@ -66,14 +62,9 @@ class Navbar extends React.Component {
             <div>
               <div>
                 <div className="allinks">
-                  <img
-                    src="http://zeus.cooltext.com/images/f5b/f5b8d4ab42e21aa4fbc8b6251a9857b7b9f9b765.png"
-                    className="logo"
-                  />
-
                   {/* The navbar will show these links before you log in */}
                   <Link to="/home">
-                    <img src="https://images.cooltext.com/5329802.png" />
+                    <img src="http://zeus.cooltext.com/images/f5b/f5b8d4ab42e21aa4fbc8b6251a9857b7b9f9b765.png" />
                   </Link>
                   <Link to="/boards">
                     <img src="https://images.cooltext.com/5329805.png" />
