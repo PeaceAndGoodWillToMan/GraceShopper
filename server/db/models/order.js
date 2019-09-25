@@ -81,6 +81,7 @@ Order.prototype.checkout = async function(boardOrders) {
       quantity: boardOrders[i].quantity,
       price: boardOrders[i].price
     }
+    await Board.updateStock(bo.quantity, bo.boardId)
     boardOrder.push(await BoardOrder.create(bo))
   }
   return boardOrder
