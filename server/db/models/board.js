@@ -33,4 +33,16 @@ const Board = db.define('board', {
   }
 })
 
+Board.updateStock = async function(qty, boId) {
+  const board = await Board.findOne({
+    where: {id: boId}
+  })
+  const newStock = board.stock - qty
+  if (newStock >= 0) {
+    await board.update({
+      stock: newStock
+    })
+  }
+}
+
 module.exports = Board
