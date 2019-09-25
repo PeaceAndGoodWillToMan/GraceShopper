@@ -37,7 +37,7 @@ async function seed() {
       price: 75,
       imageUrl:
         'https://brailleskateboarding.com/wp-content/uploads/2019/04/IMG_5530.jpg',
-      stock: 50
+      stock: 13
     }),
     Board.create({
       name: 'Braille Longboard',
