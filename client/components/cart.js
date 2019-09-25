@@ -53,7 +53,12 @@ class Cart extends Component {
               <div>
                 <Link key={content.id} to={`/boards/${content.id}`}>
                   <p id="boardname">{content.name}</p>
-                  <img src={content.imageUrl} height="175" width="175" />
+                  <img
+                    src={content.imageUrl}
+                    height="175"
+                    width="175"
+                    className="imgrounder"
+                  />
                 </Link>
               </div>
               <CartItem content={content} />

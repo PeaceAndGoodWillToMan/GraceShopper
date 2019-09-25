@@ -29,17 +29,19 @@ class Profiles extends Component {
   render() {
     console.log('what the fuck is dis', this.state)
     return (
-      <div>
-        <p>First Name: {this.props.state.firstName}</p>
-        <p>Last Name : {this.props.state.lastName}</p>
-        <p>Address : {this.props.state.address}</p>
-        <p>Email : {this.props.state.email}</p>
-        <hr />
-        <hr />
-        <button type="submit" onClick={this.editUser}>
-          Edit Profile
-        </button>
-        <div>{!this.state.editClicked ? <br /> : <EditProfileForm />}</div>
+      <div className="profileStyling">
+        <div>
+          <p>First Name: {this.props.state.firstName}</p>
+          <p>Last Name : {this.props.state.lastName}</p>
+          <p>Address : {this.props.state.address}</p>
+          <p>Email : {this.props.state.email}</p>
+          <hr />
+          <hr />
+          <button type="submit" onClick={this.editUser}>
+            Edit Profile
+          </button>
+          <div>{!this.state.editClicked ? <br /> : <EditProfileForm />}</div>
+        </div>
       </div>
     )
   }

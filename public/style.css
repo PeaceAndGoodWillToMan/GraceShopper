@@ -9,7 +9,7 @@ a {
 }
 
 a:hover {
-  color: #00ff00;
+  color: #83d6fc;
   transform: scale(1.2);
 }
 
@@ -62,11 +62,21 @@ nav {
   border-radius: 40px;
   align-content: center;
 }
-
-#singleBoard {
+.desc {
+  display: flex;
+  flex-direction: column;
+}
+.singleBoard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border-radius: 40px;
-  background: rgba(5, 5, 5, 0.178);
-  width: 30%;
+  background: rgba(71, 71, 71, 0.199);
+  padding: 25px;
+  margin-top: 0.8%;
+  margin-bottom: 0.8%;
+  margin-left: 35%;
+  margin-right: 35%;
 }
 
 form div {
@@ -115,7 +125,7 @@ li {
   color: rgb(255, 251, 251); /* CSS link color (red) */
 }
 li:hover {
-  color: #00ff00;
+  color: #83d6fc;
   transform: scale(1.2);
 }
 
@@ -126,6 +136,19 @@ li:hover {
   justify-content: space-around;
   border-radius: 40px;
   background: rgba(5, 5, 5, 0.178);
+}
+
+.profileStyling {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  border-radius: 40px;
+  background: rgba(5, 5, 5, 0.178);
+  margin-top: 0.8%;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-bottom: 2%;
 }
 
 #item {

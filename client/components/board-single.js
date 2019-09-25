@@ -16,7 +16,7 @@ class Single extends Component {
     console.log(this.props)
     const {name, price, imageUrl, stock} = this.props.selected
     return (
-      <div id="singleBoard">
+      <div className="singleBoard">
         <div>
           <img src={imageUrl} height="200" width="200" className="imgrounder" />
           <h1>{name}</h1>
